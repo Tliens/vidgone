@@ -36,12 +36,12 @@
 </script>
 <style>
 :root{
-  --bg:#faf5f3; --card:#ffffff; --tx:#26120f; --mut:#8a6f6a; --bd:#eddcd8;
-  --accent:#d63c41; --accent2:#c07a12; --glow:rgba(229,72,77,.10); --chip:#f8ece9;
+  --bg:#faf7f8; --card:#ffffff; --tx:#241a20; --mut:#84707c; --bd:#eadfe4;
+  --accent:#d63c41; --accent2:#c07a12; --glow:rgba(229,72,77,.10); --chip:#f7eef1;
   --danger:#d64545; --ok:#b8781a;
 }
-[data-theme="dark"]{ --bg:#160d0d; --card:#221314; --tx:#f6ebe8; --mut:#b09a94; --bd:#372120; --accent:#e5484d; --accent2:#f5a623; --glow:rgba(229,72,77,.13); --chip:#2a1817; --danger:#f87171; --ok:#f5a623; }
-@media (prefers-color-scheme: dark){ :root[data-theme="auto"]{ --bg:#160d0d; --card:#221314; --tx:#f6ebe8; --mut:#b09a94; --bd:#372120; --accent:#e5484d; --accent2:#f5a623; --glow:rgba(229,72,77,.13); --chip:#2a1817; --danger:#f87171; --ok:#f5a623; } }
+[data-theme="dark"]{ --bg:#141017; --card:#1d171f; --tx:#f4eef2; --mut:#a89aae; --bd:#2c2331; --accent:#e5484d; --accent2:#f5a623; --glow:rgba(229,72,77,.12); --chip:#241c27; --danger:#f87171; --ok:#f5a623; }
+@media (prefers-color-scheme: dark){ :root[data-theme="auto"]{ --bg:#141017; --card:#1d171f; --tx:#f4eef2; --mut:#a89aae; --bd:#2c2331; --accent:#e5484d; --accent2:#f5a623; --glow:rgba(229,72,77,.12); --chip:#241c27; --danger:#f87171; --ok:#f5a623; } }
 *{box-sizing:border-box} html{scroll-behavior:smooth}
 body{margin:0;font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--tx)}
 a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
@@ -49,7 +49,7 @@ a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
 .topbar{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--bd)}
 .topbar .wrap{display:flex;align-items:center;gap:18px;height:58px}
 .brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:19px;letter-spacing:-.3px;color:var(--tx)}
-.brand .mark{width:28px;height:28px;border-radius:9px;object-fit:cover;box-shadow:0 0 0 1.5px var(--card),0 0 0 3px var(--accent),0 2px 10px var(--glow)}
+.brand .mark{width:30px;height:30px;border-radius:10px;object-fit:cover;border:2px solid transparent;background:linear-gradient(var(--card),var(--card)) padding-box,linear-gradient(135deg,#f5a623,#e5484d 40%,#9b6cff 70%,#2dd4bf) border-box;box-shadow:0 2px 10px var(--glow)}
 .topnav{display:flex;gap:16px;margin-left:auto;align-items:center}
 .topnav a{color:var(--mut);font-size:14.5px;font-weight:600}
 .tbtn{border:1px solid var(--bd);background:var(--card);color:var(--tx);border-radius:9px;padding:5px 11px;font-size:13px;font-weight:700;cursor:pointer}
@@ -127,7 +127,7 @@ footer{border-top:1px solid var(--bd);margin-top:30px;padding:26px 0 34px;color:
 .kcard img{width:100%;height:100%;object-fit:cover;display:block}
 .kmodal{position:fixed;inset:0;z-index:95;background:rgba(12,4,4,.62);backdrop-filter:blur(5px);display:flex;align-items:center;justify-content:center;padding:20px}
 .kmodal-box{position:relative;background:var(--card);border:1px solid var(--bd);border-radius:20px;max-width:446px;width:100%;max-height:86vh;overflow:auto;padding:28px 26px 24px;text-align:center;box-shadow:0 24px 70px rgba(0,0,0,.42)}
-.kmodal-box .kimg{width:136px;height:136px;border-radius:28px;object-fit:cover;box-shadow:0 0 0 2.5px var(--accent),0 10px 30px var(--glow);margin-bottom:14px}
+.kmodal-box .kimg{width:136px;height:136px;border-radius:28px;object-fit:cover;border:3px solid transparent;background:linear-gradient(var(--card),var(--card)) padding-box,linear-gradient(135deg,#f5a623,#e5484d 40%,#9b6cff 70%,#2dd4bf) border-box;box-shadow:0 10px 30px var(--glow);margin-bottom:14px}
 .kmodal-box h3{margin:2px 0 12px;font-size:20px;letter-spacing:-.2px}
 .kmodal-box p{color:var(--mut);font-size:14.5px;line-height:1.7;margin:0 0 10px;text-align:left}
 .kmodal-box .btn{margin-top:8px}
@@ -1217,6 +1217,20 @@ $('kCard').onclick = () => kModal.classList.remove('hidden');
 $('kModalX').onclick = () => kModal.classList.add('hidden');
 kModal.addEventListener('click', e => { if (e.target === kModal) kModal.classList.add('hidden'); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') kModal.classList.add('hidden'); });
+
+/* result panel: process another -> back to drop zone */
+$('againBtn').onclick = () => {
+  const rv = $('resultVideo');
+  if (rv) rv.pause();
+  $('resultWrap').classList.add('hidden');
+  $('editor').classList.add('hidden');
+  $('previewWrap').classList.add('hidden');
+  $('dropZone').classList.remove('hidden');
+  ed.masks = []; ed.exporting = false; ed.canceling = false;
+  $('fileInput').value = '';
+  const tool = $('tool');
+  if (tool) window.scrollTo({ top: tool.offsetTop - 70, behavior: 'smooth' });
+};
 
 /* ---------------- funnel (matrix cross-promotion) ---------------- */
 const FUNNEL = { key: 'funnel_markgone_v1' };
