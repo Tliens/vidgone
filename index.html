@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>VidGone — Free Online Video Watermark Remover</title>
-<meta name="description" content="Paid tools charge per export — this one never will. Brush over any watermark and export a clean MP4, processed 100% in your browser. No upload, no signup, free forever. 免费在线视频去水印。">
+<meta name="description" content="Remove watermarks from videos without uploading them. VidGone repairs frames locally in your browser with WebCodecs hardware acceleration — no upload, no signup, 100% private. Free video watermark remover.">
 <link rel="canonical" href="https://vidgone.kuige.me/">
 <link rel="alternate" hreflang="en" href="https://vidgone.kuige.me/?lang=en">
 <link rel="alternate" hreflang="zh" href="https://vidgone.kuige.me/?lang=zh">
@@ -63,6 +63,14 @@ a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
 .badge.warn{color:#b7791f;border-color:#ecd9a8}
 [data-theme="dark"] .badge.warn{color:#f5c66d;border-color:#4a3d1d}
 .tool{margin:26px 0 10px}
+.hd-stage{position:relative;background:#000;border-radius:16px 16px 0 0;overflow:hidden}
+#demoCanvas{display:block;width:100%;height:auto}
+.hd-chips{position:absolute;left:14px;bottom:12px;display:flex;gap:8px;flex-wrap:wrap}
+.hd-chip{background:rgba(0,0,0,.55);color:#eee;border-radius:999px;padding:4px 13px;font-size:12.5px;font-weight:700;transition:.25s;opacity:.6}
+.hd-chip.on{opacity:1;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff}
+.hd-cta{display:flex;align-items:center;gap:14px;padding:13px 16px;flex-wrap:wrap}
+.hd-note{color:var(--mut);font-size:13px}
+@media(max-width:640px){.hd-note{display:none}}
 .panel{background:var(--card);border:1px solid var(--bd);border-radius:16px;box-shadow:0 6px 26px var(--glow)}
 #dropZone{padding:52px 24px;text-align:center;border:2px dashed var(--bd);border-radius:16px;cursor:pointer;transition:.15s}
 #dropZone:hover,#dropZone.drag{border-color:var(--accent);background:var(--glow)}
@@ -153,12 +161,29 @@ footer{border-top:1px solid var(--bd);margin-top:30px;padding:26px 0 34px;color:
 
 <main class="wrap">
   <section class="hero">
-    <h1 data-i18n="h1">Free Video Watermark Remover</h1>
-    <p class="sub" data-i18n="sub">Paid tools charge per export — this one never will. Brush over any watermark, let the repair engine rebuild it frame by frame, and export a clean MP4 with hardware acceleration. Your video never leaves your device. Free, forever.</p>
+    <h1 data-i18n="h1">Remove Video Watermarks Privately</h1>
+    <p class="sub" data-i18n="sub">100% local. Your video never leaves your device — brush over any watermark and export a clean MP4, rebuilt frame by frame with hardware acceleration. Free to use, no signup.</p>
     <div class="badges">
-      <span class="badge ok" data-i18n="b1">100% local — video never leaves your device</span>
-      <span class="badge" data-i18n="b2">Free · no limits · no signup</span>
+      <span class="badge ok" data-i18n="b1">No upload · No signup · No limits</span>
       <span class="badge" id="supportBadge" data-i18n="b3">Checking browser support…</span>
+    </div>
+    
+  </section>
+
+  <section class="tool">
+    <div class="panel" id="heroDemo">
+      <div class="hd-stage">
+        <canvas id="demoCanvas" aria-label="Animation: brush over a watermark and it disappears"></canvas>
+        <div class="hd-chips">
+          <span class="hd-chip on" id="hdChip1" data-i18n="dCap1">1 · Original</span>
+          <span class="hd-chip" id="hdChip2" data-i18n="dCap2">2 · Brush over</span>
+          <span class="hd-chip" id="hdChip3" data-i18n="dCap3">3 · Watermark gone</span>
+        </div>
+      </div>
+      <div class="hd-cta">
+        <button class="btn ghost small" id="demoTryBtn" data-i18n="dTry">▶ Try it on the sample video</button>
+        <span class="hd-note" data-i18n="dNote">Live demo — drawn in your browser, no video files involved</span>
+      </div>
     </div>
   </section>
 
@@ -270,11 +295,21 @@ footer{border-top:1px solid var(--bd);margin-top:30px;padding:26px 0 34px;color:
         <li data-i18n="tip4">Only remove watermarks from videos you own or have permission to edit. Removing others’ credits to repost content may infringe copyright.</li>
       </ul>
     </div>
+    <div class="tips" style="margin-top:14px">
+      <b data-i18n="gH2b">Deep-dive guides</b>
+      <ul style="margin-top:8px">
+        <li><a href="remove-watermark-from-video.html">Remove a watermark from a video — the no-upload way</a></li>
+        <li><a href="remove-logo-from-video.html">Remove a logo from a video (corner bugs, channel marks)</a></li>
+        <li><a href="remove-text-from-video.html">Remove text, captions &amp; timestamps from a video</a></li>
+        <li><a href="no-upload-video-watermark-remover.html">Why a no-upload watermark remover keeps your videos private</a></li>
+        <li><a href="free-video-watermark-remover.html">Free video watermark remover — what “free + local + private” really means</a></li>
+      </ul>
+    </div>
   </section>
 
   <section id="faq" class="info">
     <h2 data-i18n="faqH2">FAQ</h2>
-    <details><summary data-i18n="fq1">Is VidGone really free?</summary><p data-i18n="fq1d">Yes — no signup, no watermark added, no export limits. Everything runs in your browser, so there are no server costs to pass on.</p></details>
+    <details><summary data-i18n="fq1">Is VidGone really free?</summary><p data-i18n="fq1d">Yes — free to use, no signup, and no watermarks added. Everything runs in your browser, so there are no server costs to pass on.</p></details>
     <details><summary data-i18n="fq2">Are my videos uploaded anywhere?</summary><p data-i18n="fq2d">No. VidGone processes video frames locally with WebCodecs inside your browser tab. Your file never leaves your device — you can even disconnect from the internet after loading the page.</p></details>
     <details><summary data-i18n="fq3">Which watermarks can it remove?</summary><p data-i18n="fq3d">Static, fixed-position watermarks: platform logos, channel names, date stamps, text overlays. The cleaner the background behind the watermark, the cleaner the result. Moving / animated watermarks are planned for a future update.</p></details>
     <details><summary data-i18n="fq4">Which browsers are supported?</summary><p data-i18n="fq4d">Any browser with WebCodecs: Chrome and Edge (recommended, hardware-accelerated), Safari 16.4+, Firefox 130+. Export speed depends on your device.</p></details>
@@ -283,9 +318,9 @@ footer{border-top:1px solid var(--bd);margin-top:30px;padding:26px 0 34px;color:
 </main>
 
 <footer><div class="wrap">
-  <div data-i18n="foot1">VidGone — free forever. Your videos never leave your device.</div>
+  <div data-i18n="foot1">VidGone — free online video watermark remover. Your videos never leave your device.</div>
   <div style="margin-top:5px" data-i18n="footCode">Codename · KuiGe Wan Sui — "Kui" the foremost of makers, "Ge" a song for everyone. Long live free tools.</div>
-  <div style="margin-top:5px">© 2026 KuiGe · <a href="https://kuige.me/">kuige.me</a> · <a href="https://markgone.kuige.me/">MarkGone (image version)</a></div>
+  <div style="margin-top:5px">© 2026 KuiGe · Part of <a href="https://kuige.me/">KuiGe Tools</a> · <a href="https://markgone.kuige.me/">MarkGone (image version)</a></div>
 </div></footer>
 
 <button class="kcard" id="kCard" aria-label="About VidGone"><img src="logo.png?v=2" alt="魁歌万岁"></button>
@@ -603,10 +638,11 @@ const I18N = {
   en: {
     title: 'VidGone — Free Online Video Watermark Remover',
     navTool: 'Tool', navGuide: 'Guide', navFaq: 'FAQ',
-    h1: 'Free Video Watermark Remover',
-    sub: 'Paid tools charge per export — this one never will. Brush over any watermark, let the repair engine rebuild it frame by frame, and export a clean MP4 with hardware acceleration. Your video never leaves your device. Free, forever.',
-    b1: '100% local — video never leaves your device', b2: 'Free · no limits · no signup', b3: 'Checking browser support…',
+    h1: 'Remove Video Watermarks Privately',
+    sub: '100% local. Your video never leaves your device — brush over any watermark and export a clean MP4, rebuilt frame by frame with hardware acceleration. Free to use, no signup.',
+    b1: 'No upload · No signup · No limits', b3: 'Checking browser support…',
     b3ok: '✓ Hardware-accelerated in this browser', b3bad: 'Needs Chrome / Edge / Safari 16.4+',
+    dCap1: '1 · Original', dCap2: '2 · Brush over', dCap3: '3 · Watermark gone', dTry: '▶ Try it on the sample video', dNote: 'Live demo — drawn in your browser, no video files involved',
     dz1: 'Drop a video here, or click to choose', dz2: 'MP4 / MOV / WebM · your file is processed locally, nothing is uploaded', dz3: '▶ Try the sample video',
     lTool: 'Mask tool', tBrush: '🖌 Brush', tRect: '▭ Box', tEraser: '◌ Erase', lSize: 'Brush size', lEdit: 'Edits', tUndo: '↩ Undo', tClear: '✕ Clear',
     lMethod: 'Removal method', mFast: 'Quick fix', mFastD: 'Fast diffusion fill — small marks, plain backgrounds',
@@ -623,12 +659,13 @@ const I18N = {
     g2: 'Mark the watermark', g2d: 'Brush over it or draw a box. Slightly cover beyond the logo edges for the cleanest rebuild. Scrub the timeline to check every scene.',
     g3: 'Export clean MP4', g3d: 'Every frame is repaired with the same mask, then re-encoded with hardware acceleration. Preview a frame first to tune the method.',
     tipH: 'Tips for the cleanest result',
+    gH2b: 'Deep-dive guides',
     tip1: 'Static watermarks only (v1): the mask applies to the whole video, so the watermark should stay in one place. Moving watermarks are on the roadmap.',
     tip2: 'Quick fix suits plain backgrounds (sky, walls, water); Smart repair handles most logos; Fine repair rebuilds texture — slower but strongest.',
     tip3: 'A watermark over busy motion (faces, text) can’t be perfectly rebuilt by any tool — try Soft blur for an unobtrusive result.',
     tip4: 'Only remove watermarks from videos you own or have permission to edit. Removing others’ credits to repost content may infringe copyright.',
     faqH2: 'FAQ', fq1: 'Is VidGone really free?',
-    fq1d: 'Yes — no signup, no watermark added, no export limits. Everything runs in your browser, so there are no server costs to pass on.',
+    fq1d: 'Yes — free to use, no signup, and no watermarks added. Everything runs in your browser, so there are no server costs to pass on.',
     fq2: 'Are my videos uploaded anywhere?',
     fq2d: 'No. VidGone processes video frames locally with WebCodecs inside your browser tab. Your file never leaves your device — you can even disconnect from the internet after loading the page.',
     fq3: 'Which watermarks can it remove?',
@@ -637,7 +674,7 @@ const I18N = {
     fq4d: 'Any browser with WebCodecs: Chrome and Edge (recommended, hardware-accelerated), Safari 16.4+, Firefox 130+. Export speed depends on your device.',
     fq5: 'Does exporting reduce quality?',
     fq5d: 'The video is re-encoded as H.264 MP4. Choose High quality to keep more detail; audio is copied losslessly when the source uses AAC.',
-    foot1: 'VidGone — free forever. Your videos never leave your device.',
+    foot1: 'VidGone — free online video watermark remover. Your videos never leave your device.',
     footCode: 'Codename · KuiGe Wan Sui — "Kui" the foremost of makers, "Ge" a song for everyone. Long live free tools.',
     kTitle: 'About VidGone · Codename "KuiGe Wan Sui"',
     kIntro: 'VidGone is a free online video watermark remover: brush over a static watermark and every frame is repaired right in your browser — no upload, no signup, no limits.',
@@ -658,10 +695,11 @@ const I18N = {
   zh: {
     title: 'VidGone — 免费在线视频去水印',
     navTool: '工具', navGuide: '指南', navFaq: '常见问题',
-    h1: '免费在线视频去水印',
-    sub: '收费工具按次算钱，这里一分不收——涂抹框选水印，修复引擎逐帧重建画面，硬件加速导出干净 MP4。视频全程留在你的设备：不上传、免注册、不限次数、永久免费。',
-    b1: '100% 本地处理，视频永不上传', b2: '免费 · 无限制 · 免注册', b3: '正在检测浏览器…',
+    h1: '视频去水印，无需上传',
+    sub: '100% 本地处理，视频不上传——涂抹框选水印，逐帧重建画面，硬件加速导出干净 MP4。免费使用，无需注册。',
+    b1: '不上传 · 免注册 · 无次数限制', b3: '正在检测浏览器…',
     b3ok: '✓ 当前浏览器已硬件加速', b3bad: '需要 Chrome / Edge / Safari 16.4+',
+    dCap1: '1 · 原视频', dCap2: '2 · 涂一下', dCap3: '3 · 水印消失', dTry: '▶ 用示例视频试试', dNote: '实时绘制于你的浏览器，不涉及任何视频文件',
     dz1: '拖入视频，或点击选择文件', dz2: '支持 MP4 / MOV / WebM · 文件仅在本机处理，绝不上传', dz3: '▶ 试试示例视频',
     lTool: '蒙版工具', tBrush: '🖌 画笔', tRect: '▭ 方框', tEraser: '◌ 擦除', lSize: '画笔大小', lEdit: '编辑', tUndo: '↩ 撤销', tClear: '✕ 清空',
     lMethod: '去除方式', mFast: '快速修复', mFastD: '快速扩散填充——小水印、简单背景',
@@ -678,12 +716,13 @@ const I18N = {
     g2: '标记水印', g2d: '用画笔涂抹或画方框，稍微盖过 logo 边缘效果最好。拖动时间轴检查每个镜头。',
     g3: '导出干净 MP4', g3d: '每一帧都用同一蒙版修复，再经硬件加速重新编码。可先预览单帧调整方式。',
     tipH: '效果最好的几个技巧',
+    gH2b: '深度指南',
     tip1: 'v1 仅支持静态水印：蒙版作用于整段视频，水印需全程位置不变。移动水印已在路线图中。',
     tip2: '快速修复适合简单背景（天空、墙面、水面）；智能修复适合多数 logo；精细修复重建纹理——最慢但最强。',
     tip3: '水印盖在剧烈运动的画面（人脸、文字）上时，任何工具都无法完美重建——试试柔化模糊。',
     tip4: '请只处理你拥有版权或已获授权的视频。去掉他人署名再发布可能构成侵权。',
     faqH2: '常见问题', fq1: 'VidGone 真的免费吗？',
-    fq1d: '免费——无需注册、不加新水印、不限导出次数。一切在你的浏览器里完成，没有服务器成本需要转嫁。',
+    fq1d: '免费使用——无需注册、不加新水印。一切在你的浏览器里完成，没有服务器成本需要转嫁。',
     fq2: '我的视频会被上传吗？',
     fq2d: '不会。VidGone 用 WebCodecs 在浏览器标签页内逐帧处理，文件不离开你的设备——加载页面后断网也能用。',
     fq3: '能去除哪类水印？',
@@ -692,7 +731,7 @@ const I18N = {
     fq4d: '支持 WebCodecs 的浏览器：Chrome 和 Edge（推荐，硬件加速）、Safari 16.4+、Firefox 130+。导出速度取决于设备性能。',
     fq5: '导出会损失画质吗？',
     fq5d: '视频会重新编码为 H.264 MP4，选"高质量"可保留更多细节；源音频为 AAC 时无损直拷。',
-    foot1: 'VidGone——永久免费，视频永不离开你的设备。',
+    foot1: 'VidGone——免费在线视频去水印，视频永不离开你的设备。',
     footCode: '本站代号：魁歌万岁 — 魁者，百工之魁；歌者，与众人同歌。为免费工具加冕，万岁。',
     kTitle: '关于 VidGone · 代号「魁歌万岁」',
     kIntro: 'VidGone 是免费的在线视频去水印工具：涂抹框选水印，全程在你的浏览器里逐帧修复（WebCodecs 硬件加速），导出干净 MP4——不上传、免注册、无限制。',
@@ -1209,6 +1248,142 @@ function showResult(blob, secs, frames, audioNote){
   $('editor').classList.add('hidden');
   $('resultWrap').classList.remove('hidden');
   maybeFunnel();
+}
+
+/* ---------------- hero demo animation (Original → Brush → Gone) ---------------- */
+{
+  const cv = $('demoCanvas');
+  if (cv && cv.getContext) {
+    const ctx = cv.getContext('2d');
+    const W = 880, H = 495;
+    const DPR = Math.min(2, window.devicePixelRatio || 1);
+    cv.width = W * DPR; cv.height = H * DPR;
+    ctx.scale(DPR, DPR);
+
+    // static scene rendered once (retina-aware)
+    const scene = document.createElement('canvas');
+    scene.width = W * DPR; scene.height = H * DPR;
+    const sc = scene.getContext('2d');
+    sc.scale(DPR, DPR);
+    let g = sc.createLinearGradient(0, 0, 0, H * 0.72);
+    g.addColorStop(0, '#2b2547'); g.addColorStop(0.55, '#7a4a6b'); g.addColorStop(1, '#f0956a');
+    sc.fillStyle = g; sc.fillRect(0, 0, W, H);
+    sc.fillStyle = 'rgba(255,214,150,.22)';
+    sc.beginPath(); sc.arc(W * 0.72, H * 0.52, 92, 0, 7); sc.fill();
+    sc.fillStyle = 'rgba(255,224,168,.95)';
+    sc.beginPath(); sc.arc(W * 0.72, H * 0.52, 46, 0, 7); sc.fill();
+    sc.fillStyle = '#3a2f4d';
+    sc.beginPath(); sc.moveTo(0, H * 0.62);
+    sc.lineTo(W * 0.16, H * 0.44); sc.lineTo(W * 0.30, H * 0.60); sc.lineTo(W * 0.46, H * 0.40);
+    sc.lineTo(W * 0.62, H * 0.62); sc.lineTo(W * 0.80, H * 0.48); sc.lineTo(W, H * 0.64);
+    sc.lineTo(W, H); sc.lineTo(0, H); sc.closePath(); sc.fill();
+    sc.fillStyle = '#241d33';
+    sc.beginPath(); sc.moveTo(0, H * 0.78);
+    sc.lineTo(W * 0.2, H * 0.68); sc.lineTo(W * 0.38, H * 0.80); sc.lineTo(W * 0.58, H * 0.66);
+    sc.lineTo(W * 0.78, H * 0.79); sc.lineTo(W, H * 0.70);
+    sc.lineTo(W, H); sc.lineTo(0, H); sc.closePath(); sc.fill();
+    g = sc.createLinearGradient(0, H * 0.8, 0, H);
+    g.addColorStop(0, '#1c1830'); g.addColorStop(1, '#0f0d1d');
+    sc.fillStyle = g; sc.fillRect(0, H * 0.8, W, H * 0.2);
+    g = sc.createRadialGradient(W / 2, H / 2, H * 0.42, W / 2, H / 2, H * 0.98);
+    g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(1, 'rgba(0,0,0,.36)');
+    sc.fillStyle = g; sc.fillRect(0, 0, W, H);
+
+    const WM = { x: W * 0.660, y: H * 0.845, w: W * 0.31, h: H * 0.075 };
+    const bpts = [];
+    for (let i = 0; i <= 26; i++) {
+      const k = i / 26;
+      bpts.push([WM.x - 16 + (WM.w + 32) * k, WM.y + WM.h * 0.45 + Math.sin(k * Math.PI * 1.7) * 11]);
+    }
+    const LOOP = 6600, T_BRUSH = 2100, T_FADE = 3300, T_CLEAN = 4000;
+    const chips = [$('hdChip1'), $('hdChip2'), $('hdChip3')];
+
+    function drawTimecode(t) {
+      const sec = Math.floor(t / 1000) % 60, f = Math.floor((t % 1000) / 41.7);
+      ctx.font = '600 17px ui-monospace, Menlo, Consolas, monospace';
+      ctx.fillStyle = 'rgba(255,255,255,.92)';
+      ctx.fillText('00:00:' + String(sec).padStart(2, '0') + ':' + String(f).padStart(2, '0'), 18, 34);
+      ctx.fillStyle = 'rgba(229,72,77,' + (0.55 + 0.45 * Math.sin(t / 260) ** 2) + ')';
+      ctx.beginPath(); ctx.arc(W - 108, 28, 7, 0, 7); ctx.fill();
+      ctx.font = '800 15px ui-monospace, Menlo, monospace';
+      ctx.fillStyle = 'rgba(255,255,255,.9)';
+      ctx.fillText('REC', W - 92, 34);
+    }
+    function drawClouds(t) {
+      ctx.save(); ctx.fillStyle = 'rgba(255,255,255,.09)';
+      const x1 = ((t * 0.014) % (W + 320)) - 160, x2 = ((t * 0.021) % (W + 260)) - 130;
+      ctx.beginPath(); ctx.ellipse(x1, H * 0.16, 150, 26, 0, 0, 7); ctx.fill();
+      ctx.beginPath(); ctx.ellipse(x2, H * 0.30, 110, 20, 0, 0, 7); ctx.fill();
+      ctx.restore();
+    }
+    function render(t) {
+      ctx.clearRect(0, 0, W, H);
+      ctx.drawImage(scene, 0, 0, W, H);
+      drawClouds(t);
+      drawTimecode(t);
+      let phase = 1, wmA = 1, brushK = 0, brushA = 0;
+      if (t < T_BRUSH) { phase = 1; }
+      else if (t < T_FADE) { phase = 2; brushK = (t - T_BRUSH) / (T_FADE - T_BRUSH); brushA = 1; }
+      else if (t < T_CLEAN) { phase = 3; const k = (t - T_FADE) / (T_CLEAN - T_FADE); wmA = 1 - k; brushK = 1; brushA = 1 - k; }
+      else { phase = 3; wmA = 0; }
+      // brush stroke
+      if (brushA > 0) {
+        ctx.save();
+        ctx.globalAlpha = brushA;
+        ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+        ctx.strokeStyle = 'rgba(229,72,77,.78)'; ctx.lineWidth = 46;
+        ctx.beginPath();
+        const n = Math.max(2, Math.floor(bpts.length * Math.min(1, brushK)));
+        ctx.moveTo(bpts[0][0], bpts[0][1]);
+        for (let i = 1; i < n; i++) ctx.lineTo(bpts[i][0], bpts[i][1]);
+        ctx.stroke();
+        ctx.strokeStyle = 'rgba(255,255,255,.28)'; ctx.lineWidth = 22; ctx.stroke();
+        ctx.restore();
+      }
+      // watermark
+      if (wmA > 0) {
+        ctx.save();
+        ctx.globalAlpha = wmA * 0.85;
+        ctx.font = '700 30px -apple-system, "Segoe UI", "PingFang SC", sans-serif';
+        ctx.fillStyle = '#fff';
+        ctx.shadowColor = 'rgba(0,0,0,.45)'; ctx.shadowBlur = 6;
+        ctx.fillText('© STOCKCLIP', WM.x + 6, WM.y + WM.h * 0.72);
+        ctx.restore();
+      }
+      chips.forEach((c, i) => c && c.classList.toggle('on', i === phase - 1));
+    }
+
+    // IAB/WebView 会冻结 rAF（即便可见）——按坑清单用 setTimeout 驱动
+    let start = null, timer = null, running = false;
+    function frame() {
+      const ts = performance.now();
+      if (start === null) start = ts;
+      render((ts - start) % LOOP);
+      timer = setTimeout(frame, 33);
+    }
+    function setRunning(on) {
+      if (on === running) return;
+      running = on;
+      if (on) { start = null; frame(); }
+      else if (timer) { clearTimeout(timer); timer = null; }
+    }
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced) {
+      render(T_CLEAN + 100); // static "after" frame for reduced motion
+      chips.forEach((c, i) => c && c.classList.toggle('on', i === 2));
+    } else {
+      setRunning(true);
+      document.addEventListener('visibilitychange', () => setRunning(!document.hidden));
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(es => es.forEach(e => setRunning(!document.hidden && e.isIntersecting)), { threshold: 0.15 }).observe(cv);
+      }
+    }
+    $('demoTryBtn').onclick = () => {
+      $('demoBtn').click();
+      const t = $('tool');
+      if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+  }
 }
 
 /* ---------------- codename floating card + about modal ---------------- */
