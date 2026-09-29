@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-title-zh="在线去除视频 logo——免费且本地处理 | VidGone" data-desc-zh="不上传视频，去掉角落 logo、频道标、台标：浏览器本地逐帧修复，免费。">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,6 +7,7 @@
 <meta name="description" content="Remove corner logos, channel bugs and station marks from videos without uploading. Local browser-based removal with per-frame inpainting.">
 <link rel="canonical" href="https://vidgone.kuige.me/remove-logo-from-video">
 <link rel="alternate" hreflang="en" href="https://vidgone.kuige.me/remove-logo-from-video">
+<link rel="alternate" hreflang="zh" href="https://vidgone.kuige.me/remove-logo-from-video?lang=zh">
 <link rel="alternate" hreflang="x-default" href="https://vidgone.kuige.me/remove-logo-from-video">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Remove a Logo from a Video Online — Free &amp; Local | VidGone">
@@ -25,6 +26,7 @@ header .wrap{display:flex;align-items:center;gap:12px;height:56px}
 .brand{display:flex;align-items:center;gap:8px;font-weight:800;font-size:18px;color:var(--tx);text-decoration:none}
 .brand i{width:24px;height:24px;border-radius:7px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:inline-flex;align-items:center;justify-content:center;color:#fff;font-style:normal;font-weight:900;font-size:13px}
 header .cta{margin-left:auto;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;text-decoration:none;font-weight:700;font-size:14px;border-radius:9px;padding:7px 14px}
+header .lang{color:var(--mut);text-decoration:none;font-weight:700;font-size:13.5px;border:1px solid var(--bd);border-radius:8px;padding:6px 10px}
 h1{font-size:clamp(26px,4.6vw,38px);line-height:1.18;letter-spacing:-.5px;margin:38px 0 12px}
 .sub{color:var(--mut);font-size:17.5px;margin:0 0 8px}
 .lead b{color:var(--tx)}
@@ -41,6 +43,7 @@ ol,ul{color:var(--mut);padding-left:22px} li{margin:7px 0}
 .cta-card small{display:block;color:var(--mut);margin-top:9px;font-size:13.5px}
 .zh{border-top:1px dashed var(--bd);margin-top:30px;padding-top:18px}
 .zh h2{font-size:19px} .zh p{font-size:14.5px}
+.hidden{display:none!important}
 .rel a{color:var(--accent);text-decoration:none;font-weight:600}
 footer{border-top:1px solid var(--bd);margin-top:36px;padding:22px 0 34px;color:var(--mut);font-size:13.5px;text-align:center}
 footer a{color:var(--accent);text-decoration:none}
@@ -49,44 +52,67 @@ footer a{color:var(--accent);text-decoration:none}
 <body>
 <header><div class="wrap">
   <a class="brand" href="https://vidgone.kuige.me/"><i>V</i>VidGone</a>
-  <a class="cta" href="https://vidgone.kuige.me/">Open the tool ↗</a>
+  <a class="lang" id="langLink" href="?lang=zh">中文</a>
+  <a class="cta" href="https://vidgone.kuige.me/" data-zh="打开工具 ↗">Open the tool ↗</a>
 </div></header>
 <main class="wrap">
-  <h1>Remove a Logo from a Video — Corner Bugs, Channel Marks, Station IDs</h1>
-  <p class="sub">The classic watermark problem: a small logo parked in the corner of every frame. Here&#x27;s the clean way to deal with it.</p>
+  <h1 data-zh="去除视频里的 logo——角落台标、频道标、素材站水印">Remove a Logo from a Video — Corner Bugs, Channel Marks, Station IDs</h1>
+  <p class="sub" data-zh="最经典的水印问题：一个小 logo 停在每一帧的角落。这里是最干净的解法。">The classic watermark problem: a small logo parked in the corner of every frame. Here&#x27;s the clean way to deal with it.</p>
 
-  <div class="card lead">Corner logos are the most common watermark: a <b>channel bug</b>, a stock-footage mark, a broadcaster's station ID. Because the logo never moves, one mask fixes every frame — which makes this the case VidGone handles best. And because nothing is uploaded, even sensitive or unreleased footage stays on your machine.</div>
+  <div class="card lead" data-zh="角落 logo 是最常见的水印：<b>频道标</b>、素材站标记、电视台台标。因为 logo 从不移动，一个蒙版就能管住所有帧——这正是 VidGone 最擅长的场景。而且全程不上传，连未发布素材、敏感素材都只留在你自己的电脑里。">Corner logos are the most common watermark: a <b>channel bug</b>, a stock-footage mark, a broadcaster's station ID. Because the logo never moves, one mask fixes every frame — which makes this the case VidGone handles best. And because nothing is uploaded, even sensitive or unreleased footage stays on your machine.</div>
 
-  <h2>Match the removal method to the background</h2>
-  <p>Quick fix (fast diffusion) is ideal when a logo sits on sky, walls or water. Smart repair (directional inpainting) is the best balance for most logos on textured scenes. Fine repair rebuilds texture at multiple scales — slower, and the strongest on complex backgrounds. If the logo sits on top of important moving detail, Soft blur is the honest fallback.</p>
+  <h2 data-zh="按背景选对去除方式">Match the removal method to the background</h2>
+  <p data-zh="logo 在天空、墙面、水面上：用「快速修复」（快速扩散）就很好。多数带纹理场景的 logo：「智能修复」（方向性修复）最平衡。复杂背景选「精细修复」（多尺度重建）——最慢也最强。logo 压在重要的运动细节上时，「柔化模糊」是诚实的选择。">Quick fix (fast diffusion) is ideal when a logo sits on sky, walls or water. Smart repair (directional inpainting) is the best balance for most logos on textured scenes. Fine repair rebuilds texture at multiple scales — slower, and the strongest on complex backgrounds. If the logo sits on top of important moving detail, Soft blur is the honest fallback.</p>
 
-  <h2>How to do it in VidGone (3 steps, nothing uploaded)</h2>
-  <ol class="steps">
-    <li><b>Open VidGone and drop your video in.</b> The file is read straight from your disk by your own browser — there is no upload step, because there is no server to upload to.</li>
-    <li><b>Mark the watermark.</b> Scrub the timeline to the scene with the mark, then brush over it or draw a box. The same mask applies to the whole clip, which is exactly what a fixed-position logo needs.</li>
-    <li><b>Export a clean MP4.</b> Every frame is repaired and re-encoded with hardware acceleration (WebCodecs). AAC audio is copied losslessly when the source uses it. Preview the result before downloading.</li>
-  </ol>
+  <h2 data-zh="在 VidGone 里三步完成（全程不上传）">How to do it in VidGone (3 steps, nothing uploaded)</h2>
+  <ol class="steps"><li data-zh="打开 VidGone，把视频拖进去。文件由你自己的浏览器直接从磁盘读取——不存在上传这一步，因为没有服务器可上传。">Open VidGone and drop your video in. The file is read straight from your disk by your own browser — there is no upload step, because there is no server to upload to.</li><li data-zh="标记水印。拖动时间轴找到有水印的镜头，用画笔涂抹或画个方框。同一蒙版作用于整段视频——位置固定的 logo 正需要这个。">Mark the watermark. Scrub the timeline to the scene with the mark, then brush over it or draw a box. The same mask applies to the whole clip, which is exactly what a fixed-position logo needs.</li><li data-zh="导出干净 MP4。每一帧都经修复并用硬件加速（WebCodecs）重新编码；源音频为 AAC 时无损直拷。下载前可先预览成品。">Export a clean MP4. Every frame is repaired and re-encoded with hardware acceleration (WebCodecs). AAC audio is copied losslessly when the source uses it. Preview the result before downloading.</li></ol>
 
-  <h2>Tips that visibly improve the result</h2>
-  <p>Cover slightly beyond the logo&#x27;s edge so the engine anchors on clean pixels; check 3–4 scenes across the timeline before exporting; and prefer the source resolution — the repair runs at full resolution either way, so there&#x27;s nothing to gain from downscaling first.</p>
+  <h2 data-zh="几个能明显提升效果的技巧">Tips that visibly improve the result</h2>
+  <p data-zh="蒙版稍微盖过 logo 边缘，让引擎锚定在干净像素上；导出前沿时间轴抽查 3–4 个镜头；保留原分辨率——修复本来就按原分辨率逐帧运行，先压缩再修毫无收益。">Cover slightly beyond the logo&#x27;s edge so the engine anchors on clean pixels; check 3–4 scenes across the timeline before exporting; and prefer the source resolution — the repair runs at full resolution either way, so there&#x27;s nothing to gain from downscaling first.</p>
 
   <div class="cta-card">
-    <a class="btn" href="https://vidgone.kuige.me/">Remove the watermark now — free, in your browser</a>
-    <small>No account · works offline after first load · MP4 / MOV / WebM</small>
+    <a class="btn" href="https://vidgone.kuige.me/" data-zh="立即去水印——免费，就在你的浏览器里">Remove the watermark now — free, in your browser</a>
+    <small data-zh="无需账号 · 首次加载后断网可用 · 支持 MP4 / MOV / WebM">No account · works offline after first load · MP4 / MOV / WebM</small>
   </div>
 
-  <h2>Frequently asked questions</h2>
-  <div class="faq"><details><summary>Can it remove a TikTok or Douyin logo?</summary><p>Yes — static platform logos are exactly the fixed-position case VidGone is built for. Brush over the mark once; every frame is repaired with the same mask.</p></details><details><summary>How long does an export take?</summary><p>It depends on your device. The pipeline is hardware-accelerated via WebCodecs; on a typical laptop a short 1080p clip exports in well under a minute.</p></details><details><summary>Is there a watermark on the output?</summary><p>No. The exported MP4 is clean — VidGone adds nothing to your video.</p></details><details><summary>Does it cost anything?</summary><p>No. It&#x27;s a free tool; processing runs on your own device.</p></details></div>
+  <h2 data-zh="常见问题">Frequently asked questions</h2>
+  <div class="faq"><details><summary data-zh="能去 TikTok 或抖音 logo 吗？">Can it remove a TikTok or Douyin logo?</summary><p data-zh="可以——静态平台 logo 正是 VidGone 针对的固定位置场景。涂抹一次，所有帧用同一蒙版修复。">Yes — static platform logos are exactly the fixed-position case VidGone is built for. Brush over the mark once; every frame is repaired with the same mask.</p></details><details><summary data-zh="导出要多久？">How long does an export take?</summary><p data-zh="取决于设备。管线经 WebCodecs 硬件加速；一般笔记本上，短片 1080p 导出远不到一分钟。">It depends on your device. The pipeline is hardware-accelerated via WebCodecs; on a typical laptop a short 1080p clip exports in well under a minute.</p></details><details><summary data-zh="导出的视频有水印吗？">Is there a watermark on the output?</summary><p data-zh="没有。导出的 MP4 是干净的——VidGone 不会往你的视频上加任何东西。">No. The exported MP4 is clean — VidGone adds nothing to your video.</p></details><details><summary data-zh="要花钱吗？">Does it cost anything?</summary><p data-zh="不要。免费工具，处理跑在你自己的设备上。">No. It&#x27;s a free tool; processing runs on your own device.</p></details></div>
 
-  <h2>Related guides</h2>
-  <p class="rel"><a href="https://vidgone.kuige.me/remove-watermark-from-video">How to Remove a Watermark from a Video (Without Uploading It)</a> · <a href="https://vidgone.kuige.me/remove-text-from-video">Remove Text, Captions and Timestamps from a Video</a> · <a href="https://vidgone.kuige.me/no-upload-video-watermark-remover">A Video Watermark Remover with No Upload</a> · <a href="https://vidgone.kuige.me/free-video-watermark-remover">Free Video Watermark Remover</a></p>
+  <h2 data-zh="相关指南">Related guides</h2>
+  <p class="rel"><a href="https://vidgone.kuige.me/remove-watermark-from-video" data-zh="视频去水印完整指南（无需上传）">Remove a watermark from a video — the no-upload way</a> · <a href="https://vidgone.kuige.me/remove-text-from-video" data-zh="去除视频文字、字幕与时间码">Remove text, captions &amp; timestamps from a video</a> · <a href="https://vidgone.kuige.me/no-upload-video-watermark-remover" data-zh="为什么“无上传”的去水印工具更保护隐私">Why a no-upload watermark remover keeps your videos private</a> · <a href="https://vidgone.kuige.me/free-video-watermark-remover" data-zh="免费视频去水印——“免费+本地+隐私”的真正含义">Free video watermark remover — what “free + local + private” really means</a></p>
 
-  <div class="zh">
+  <div class="zh" id="zhSummary">
     <h2>中文摘要</h2>
     <p>去除视频角落 logo（频道标、素材站水印、台标）的最佳场景：位置固定 = 一个蒙版管全部帧。涂抹稍大于 logo 边缘、多检查几个镜头、无需上传即可导出干净 MP4。</p>
     <p><a href="https://vidgone.kuige.me/?lang=zh">打开中文界面 →</a></p>
   </div>
 </main>
-<footer><div class="wrap">VidGone — free online video watermark remover · Part of <a href="https://kuige.me/">KuiGe Tools</a> · Sister site: <a href="https://markgone.kuige.me/">MarkGone</a> (image watermark remover)</div></footer>
+<footer><div class="wrap" data-zh="VidGone——免费在线视频去水印 · <a href=&quot;https://kuige.me/&quot;>KuiGe Tools</a> 家族 · 姊妹站：<a href=&quot;https://markgone.kuige.me/&quot;>MarkGone</a>（图片去水印）">VidGone — free online video watermark remover · Part of <a href="https://kuige.me/">KuiGe Tools</a> · Sister site: <a href="https://markgone.kuige.me/">MarkGone</a> (image watermark remover)</div></footer>
+<script>
+(function(){
+  var u = new URL(location.href);
+  var q = u.searchParams.get('lang');
+  var stored = null;
+  try { stored = localStorage.getItem('vidgone-lang'); } catch(e){}
+  var nav = (navigator.language || 'en').toLowerCase().indexOf('zh') === 0 ? 'zh' : 'en';
+  var lang = (q === 'zh' || q === 'en') ? q : (stored === 'zh' || stored === 'en' ? stored : nav);
+  var root = document.documentElement;
+  var link = document.getElementById('langLink');
+  if (link){ link.href = lang === 'zh' ? '?lang=en' : '?lang=zh'; link.textContent = lang === 'zh' ? 'EN' : '中文'; }
+  if (lang === 'zh'){
+    root.lang = 'zh-CN';
+    document.title = root.getAttribute('data-title-zh');
+    var md = document.querySelector('meta[name="description"]');
+    if (md) md.setAttribute('content', root.getAttribute('data-desc-zh'));
+    document.querySelectorAll('[data-zh]').forEach(function(el){
+      var v = el.getAttribute('data-zh');
+      if (v) el.innerHTML = v;
+    });
+    var zs = document.getElementById('zhSummary');
+    if (zs) zs.classList.add('hidden');
+  }
+  try { localStorage.setItem('vidgone-lang', lang); } catch(e){}
+})();
+</script>
 </body>
 </html>

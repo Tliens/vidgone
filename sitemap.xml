@@ -3,6 +3,7 @@
   <url>
     <loc>https://vidgone.kuige.me/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://vidgone.kuige.me/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://vidgone.kuige.me/?lang=zh"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://vidgone.kuige.me/"/>
     <lastmod>2026-09-30</lastmod>
     <priority>1.0</priority>
@@ -20,36 +21,66 @@
   <url>
     <loc>https://vidgone.kuige.me/remove-watermark-from-video</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://vidgone.kuige.me/remove-watermark-from-video"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://vidgone.kuige.me/remove-watermark-from-video?lang=zh"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://vidgone.kuige.me/remove-watermark-from-video"/>
     <lastmod>2026-09-30</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://vidgone.kuige.me/remove-watermark-from-video?lang=zh</loc>
+    <lastmod>2026-09-30</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://vidgone.kuige.me/remove-logo-from-video</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://vidgone.kuige.me/remove-logo-from-video"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://vidgone.kuige.me/remove-logo-from-video?lang=zh"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://vidgone.kuige.me/remove-logo-from-video"/>
     <lastmod>2026-09-30</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://vidgone.kuige.me/remove-logo-from-video?lang=zh</loc>
+    <lastmod>2026-09-30</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://vidgone.kuige.me/remove-text-from-video</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://vidgone.kuige.me/remove-text-from-video"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://vidgone.kuige.me/remove-text-from-video?lang=zh"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://vidgone.kuige.me/remove-text-from-video"/>
     <lastmod>2026-09-30</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://vidgone.kuige.me/remove-text-from-video?lang=zh</loc>
+    <lastmod>2026-09-30</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://vidgone.kuige.me/no-upload-video-watermark-remover</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://vidgone.kuige.me/no-upload-video-watermark-remover"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://vidgone.kuige.me/no-upload-video-watermark-remover?lang=zh"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://vidgone.kuige.me/no-upload-video-watermark-remover"/>
     <lastmod>2026-09-30</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://vidgone.kuige.me/no-upload-video-watermark-remover?lang=zh</loc>
+    <lastmod>2026-09-30</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://vidgone.kuige.me/free-video-watermark-remover</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://vidgone.kuige.me/free-video-watermark-remover"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://vidgone.kuige.me/free-video-watermark-remover?lang=zh"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://vidgone.kuige.me/free-video-watermark-remover"/>
     <lastmod>2026-09-30</lastmod>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://vidgone.kuige.me/free-video-watermark-remover?lang=zh</loc>
+    <lastmod>2026-09-30</lastmod>
+    <priority>0.6</priority>
   </url>
 </urlset>

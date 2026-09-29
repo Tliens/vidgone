@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-title-zh="视频去水印完整指南——全程不上传 | VidGone" data-desc-zh="怎么不上传视频就去掉水印：免费的浏览器本地去水印工具，WebCodecs 逐帧修复。分步指南。">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,6 +7,7 @@
 <meta name="description" content="How to remove a watermark from a video without uploading it: a free browser-based remover that repairs frames locally with WebCodecs. Step-by-step guide.">
 <link rel="canonical" href="https://vidgone.kuige.me/remove-watermark-from-video">
 <link rel="alternate" hreflang="en" href="https://vidgone.kuige.me/remove-watermark-from-video">
+<link rel="alternate" hreflang="zh" href="https://vidgone.kuige.me/remove-watermark-from-video?lang=zh">
 <link rel="alternate" hreflang="x-default" href="https://vidgone.kuige.me/remove-watermark-from-video">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Remove a Watermark from a Video — Without Uploading It | VidGone">
@@ -25,6 +26,7 @@ header .wrap{display:flex;align-items:center;gap:12px;height:56px}
 .brand{display:flex;align-items:center;gap:8px;font-weight:800;font-size:18px;color:var(--tx);text-decoration:none}
 .brand i{width:24px;height:24px;border-radius:7px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:inline-flex;align-items:center;justify-content:center;color:#fff;font-style:normal;font-weight:900;font-size:13px}
 header .cta{margin-left:auto;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;text-decoration:none;font-weight:700;font-size:14px;border-radius:9px;padding:7px 14px}
+header .lang{color:var(--mut);text-decoration:none;font-weight:700;font-size:13.5px;border:1px solid var(--bd);border-radius:8px;padding:6px 10px}
 h1{font-size:clamp(26px,4.6vw,38px);line-height:1.18;letter-spacing:-.5px;margin:38px 0 12px}
 .sub{color:var(--mut);font-size:17.5px;margin:0 0 8px}
 .lead b{color:var(--tx)}
@@ -41,6 +43,7 @@ ol,ul{color:var(--mut);padding-left:22px} li{margin:7px 0}
 .cta-card small{display:block;color:var(--mut);margin-top:9px;font-size:13.5px}
 .zh{border-top:1px dashed var(--bd);margin-top:30px;padding-top:18px}
 .zh h2{font-size:19px} .zh p{font-size:14.5px}
+.hidden{display:none!important}
 .rel a{color:var(--accent);text-decoration:none;font-weight:600}
 footer{border-top:1px solid var(--bd);margin-top:36px;padding:22px 0 34px;color:var(--mut);font-size:13.5px;text-align:center}
 footer a{color:var(--accent);text-decoration:none}
@@ -49,44 +52,67 @@ footer a{color:var(--accent);text-decoration:none}
 <body>
 <header><div class="wrap">
   <a class="brand" href="https://vidgone.kuige.me/"><i>V</i>VidGone</a>
-  <a class="cta" href="https://vidgone.kuige.me/">Open the tool ↗</a>
+  <a class="lang" id="langLink" href="?lang=zh">中文</a>
+  <a class="cta" href="https://vidgone.kuige.me/" data-zh="打开工具 ↗">Open the tool ↗</a>
 </div></header>
 <main class="wrap">
-  <h1>How to Remove a Watermark from a Video (Without Uploading It)</h1>
-  <p class="sub">A practical guide to cleaning watermarks from your own clips — locally, privately, and for free.</p>
+  <h1 data-zh="怎么去掉视频里的水印（不用上传）">How to Remove a Watermark from a Video (Without Uploading It)</h1>
+  <p class="sub" data-zh="一份实用指南：把自己视频里的水印清理干净——本地、私密、免费。">A practical guide to cleaning watermarks from your own clips — locally, privately, and for free.</p>
 
-  <div class="card lead">Most online removers work the same way: you <b>upload your video to their server</b>, they process it, you download the result. That means waiting for uploads, file-size limits, and your footage sitting on someone else's machine. <b>VidGone flips the model</b>: the video is opened by your own browser and repaired frame by frame on your device — there is no upload step at all.</div>
+  <div class="card lead" data-zh="大多数在线去水印工具都是一个套路：你把视频<b>上传到它的服务器</b>，它处理完你再下载。等待上传、限制文件大小，素材还躺在别人的机器上。<b>VidGone 把这个模式倒了过来</b>：视频由你自己的浏览器打开，在你的设备上逐帧修复——根本不存在上传这一步。">Most online removers work the same way: you <b>upload your video to their server</b>, they process it, you download the result. That means waiting for uploads, file-size limits, and your footage sitting on someone else's machine. <b>VidGone flips the model</b>: the video is opened by your own browser and repaired frame by frame on your device — there is no upload step at all.</div>
 
-  <h2>What actually works on a burned-in watermark</h2>
-  <p>A watermark that is part of the picture (a platform logo, a channel name, a date stamp) can&#x27;t be deleted — it has to be reconstructed. VidGone&#x27;s repair engine rebuilds the covered area from the pixels around it, every single frame. Results are cleanest when the watermark sits on a fairly stable background: sky, walls, water, smooth gradients. Over busy motion, the Soft-blur mode is often the better trade.</p>
+  <h2 data-zh="烧录在画面里的水印，怎样才去得掉">What actually works on a burned-in watermark</h2>
+  <p data-zh="已经成为画面一部分的水印（平台 logo、频道名、日期角标）没法直接「删除」，只能重建。VidGone 的修复引擎用周围像素重建被遮挡区域，每一帧都如此。水印落在较稳定的背景上（天空、墙面、水面、平滑渐变）时效果最干净；压在剧烈运动的画面上时，柔化模糊往往是更划算的选择。">A watermark that is part of the picture (a platform logo, a channel name, a date stamp) can&#x27;t be &quot;deleted&quot; — it has to be reconstructed. VidGone&#x27;s repair engine rebuilds the covered area from the pixels around it, every single frame. Results are cleanest when the watermark sits on a fairly stable background: sky, walls, water, smooth gradients. Over busy motion, the Soft-blur mode is often the better trade.</p>
 
-  <h2>How to do it in VidGone (3 steps, nothing uploaded)</h2>
-  <ol class="steps">
-    <li><b>Open VidGone and drop your video in.</b> The file is read straight from your disk by your own browser — there is no upload step, because there is no server to upload to.</li>
-    <li><b>Mark the watermark.</b> Scrub the timeline to the scene with the mark, then brush over it or draw a box. The same mask applies to the whole clip, which is exactly what a fixed-position logo needs.</li>
-    <li><b>Export a clean MP4.</b> Every frame is repaired and re-encoded with hardware acceleration (WebCodecs). AAC audio is copied losslessly when the source uses it. Preview the result before downloading.</li>
-  </ol>
+  <h2 data-zh="在 VidGone 里三步完成（全程不上传）">How to do it in VidGone (3 steps, nothing uploaded)</h2>
+  <ol class="steps"><li data-zh="打开 VidGone，把视频拖进去。文件由你自己的浏览器直接从磁盘读取——不存在上传这一步，因为没有服务器可上传。">Open VidGone and drop your video in. The file is read straight from your disk by your own browser — there is no upload step, because there is no server to upload to.</li><li data-zh="标记水印。拖动时间轴找到有水印的镜头，用画笔涂抹或画个方框。同一蒙版作用于整段视频——位置固定的 logo 正需要这个。">Mark the watermark. Scrub the timeline to the scene with the mark, then brush over it or draw a box. The same mask applies to the whole clip, which is exactly what a fixed-position logo needs.</li><li data-zh="导出干净 MP4。每一帧都经修复并用硬件加速（WebCodecs）重新编码；源音频为 AAC 时无损直拷。下载前可先预览成品。">Export a clean MP4. Every frame is repaired and re-encoded with hardware acceleration (WebCodecs). AAC audio is copied losslessly when the source uses it. Preview the result before downloading.</li></ol>
 
-  <h2>Free + local + private, not just free</h2>
-  <p>Free is easy to promise. What makes VidGone different is the combination: free &lt;i&gt;and&lt;/i&gt; local &lt;i&gt;and&lt;/i&gt; private. Because everything runs in your browser with WebCodecs, there are no per-export fees, no accounts, and no copy of your video anywhere but your own disk.</p>
+  <h2 data-zh="不止免费：免费 + 本地 + 隐私">Free + local + private, not just free</h2>
+  <p data-zh="免费谁都承诺得起，VidGone 的差异在于组合：免费、本地、隐私三位一体。一切都在浏览器里靠 WebCodecs 完成，没有按次收费、没有账号，你的视频除自己的磁盘外不存在任何副本。">Free is easy to promise. What makes VidGone different is the combination: free &lt;i&gt;and&lt;/i&gt; local &lt;i&gt;and&lt;/i&gt; private. Because everything runs in your browser with WebCodecs, there are no per-export fees, no accounts, and no copy of your video anywhere but your own disk.</p>
 
   <div class="cta-card">
-    <a class="btn" href="https://vidgone.kuige.me/">Remove the watermark now — free, in your browser</a>
-    <small>No account · works offline after first load · MP4 / MOV / WebM</small>
+    <a class="btn" href="https://vidgone.kuige.me/" data-zh="立即去水印——免费，就在你的浏览器里">Remove the watermark now — free, in your browser</a>
+    <small data-zh="无需账号 · 首次加载后断网可用 · 支持 MP4 / MOV / WebM">No account · works offline after first load · MP4 / MOV / WebM</small>
   </div>
 
-  <h2>Frequently asked questions</h2>
-  <div class="faq"><details><summary>Is it really free?</summary><p>Yes — free to use with no signup. Processing happens in your browser, so there are no server costs to pass on to you.</p></details><details><summary>Will the video quality drop?</summary><p>The video is re-encoded as H.264 MP4; choose the High quality preset to keep more detail. Audio is copied losslessly when the source uses AAC.</p></details><details><summary>Does it work on moving watermarks?</summary><p>The current version applies one mask to the whole clip, so it targets fixed-position watermarks. Moving watermarks are on the roadmap.</p></details><details><summary>Is my video uploaded anywhere?</summary><p>No. VidGone has no backend — your browser opens the file from your disk and processes every frame locally.</p></details></div>
+  <h2 data-zh="常见问题">Frequently asked questions</h2>
+  <div class="faq"><details><summary data-zh="真的免费吗？">Is it really free?</summary><p data-zh="免费使用，无需注册。处理发生在你的浏览器里，没有服务器成本需要转嫁给你。">Yes — free to use with no signup. Processing happens in your browser, so there are no server costs to pass on to you.</p></details><details><summary data-zh="画质会下降吗？">Will the video quality drop?</summary><p data-zh="视频会重新编码为 H.264 MP4，选「高质量」可保留更多细节；源音频为 AAC 时无损直拷。">The video is re-encoded as H.264 MP4; choose the High quality preset to keep more detail. Audio is copied losslessly when the source uses AAC.</p></details><details><summary data-zh="能去移动水印吗？">Does it work on moving watermarks?</summary><p data-zh="当前版本一个蒙版作用于整段视频，针对位置固定的水印；移动水印已在路线图中。">The current version applies one mask to the whole clip, so it targets fixed-position watermarks. Moving watermarks are on the roadmap.</p></details><details><summary data-zh="我的视频会被上传吗？">Is my video uploaded anywhere?</summary><p data-zh="不会。VidGone 没有后端——浏览器从你的磁盘打开文件，每一帧都在本地处理。">No. VidGone has no backend — your browser opens the file from your disk and processes every frame locally.</p></details></div>
 
-  <h2>Related guides</h2>
-  <p class="rel"><a href="https://vidgone.kuige.me/remove-logo-from-video">Remove a Logo from a Video</a> · <a href="https://vidgone.kuige.me/remove-text-from-video">Remove Text, Captions and Timestamps from a Video</a> · <a href="https://vidgone.kuige.me/no-upload-video-watermark-remover">A Video Watermark Remover with No Upload</a> · <a href="https://vidgone.kuige.me/free-video-watermark-remover">Free Video Watermark Remover</a></p>
+  <h2 data-zh="相关指南">Related guides</h2>
+  <p class="rel"><a href="https://vidgone.kuige.me/remove-logo-from-video" data-zh="去除视频角落 logo（频道标/台标）">Remove a logo from a video (corner bugs, channel marks)</a> · <a href="https://vidgone.kuige.me/remove-text-from-video" data-zh="去除视频文字、字幕与时间码">Remove text, captions &amp; timestamps from a video</a> · <a href="https://vidgone.kuige.me/no-upload-video-watermark-remover" data-zh="为什么“无上传”的去水印工具更保护隐私">Why a no-upload watermark remover keeps your videos private</a> · <a href="https://vidgone.kuige.me/free-video-watermark-remover" data-zh="免费视频去水印——“免费+本地+隐私”的真正含义">Free video watermark remover — what “free + local + private” really means</a></p>
 
-  <div class="zh">
+  <div class="zh" id="zhSummary">
     <h2>中文摘要</h2>
     <p>这是一篇教你「不上传视频就去掉水印」的指南：VidGone 在浏览器里用 WebCodecs 逐帧修复画面，视频全程留在本机，免费、免注册。适合去除平台 logo、频道名、日期角标等固定位置水印。</p>
     <p><a href="https://vidgone.kuige.me/?lang=zh">打开中文界面 →</a></p>
   </div>
 </main>
-<footer><div class="wrap">VidGone — free online video watermark remover · Part of <a href="https://kuige.me/">KuiGe Tools</a> · Sister site: <a href="https://markgone.kuige.me/">MarkGone</a> (image watermark remover)</div></footer>
+<footer><div class="wrap" data-zh="VidGone——免费在线视频去水印 · <a href=&quot;https://kuige.me/&quot;>KuiGe Tools</a> 家族 · 姊妹站：<a href=&quot;https://markgone.kuige.me/&quot;>MarkGone</a>（图片去水印）">VidGone — free online video watermark remover · Part of <a href="https://kuige.me/">KuiGe Tools</a> · Sister site: <a href="https://markgone.kuige.me/">MarkGone</a> (image watermark remover)</div></footer>
+<script>
+(function(){
+  var u = new URL(location.href);
+  var q = u.searchParams.get('lang');
+  var stored = null;
+  try { stored = localStorage.getItem('vidgone-lang'); } catch(e){}
+  var nav = (navigator.language || 'en').toLowerCase().indexOf('zh') === 0 ? 'zh' : 'en';
+  var lang = (q === 'zh' || q === 'en') ? q : (stored === 'zh' || stored === 'en' ? stored : nav);
+  var root = document.documentElement;
+  var link = document.getElementById('langLink');
+  if (link){ link.href = lang === 'zh' ? '?lang=en' : '?lang=zh'; link.textContent = lang === 'zh' ? 'EN' : '中文'; }
+  if (lang === 'zh'){
+    root.lang = 'zh-CN';
+    document.title = root.getAttribute('data-title-zh');
+    var md = document.querySelector('meta[name="description"]');
+    if (md) md.setAttribute('content', root.getAttribute('data-desc-zh'));
+    document.querySelectorAll('[data-zh]').forEach(function(el){
+      var v = el.getAttribute('data-zh');
+      if (v) el.innerHTML = v;
+    });
+    var zs = document.getElementById('zhSummary');
+    if (zs) zs.classList.add('hidden');
+  }
+  try { localStorage.setItem('vidgone-lang', lang); } catch(e){}
+})();
+</script>
 </body>
 </html>

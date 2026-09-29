@@ -298,11 +298,11 @@ footer{border-top:1px solid var(--bd);margin-top:30px;padding:26px 0 34px;color:
     <div class="tips" style="margin-top:14px">
       <b data-i18n="gH2b">Deep-dive guides</b>
       <ul style="margin-top:8px">
-        <li><a href="remove-watermark-from-video.html">Remove a watermark from a video — the no-upload way</a></li>
-        <li><a href="remove-logo-from-video.html">Remove a logo from a video (corner bugs, channel marks)</a></li>
-        <li><a href="remove-text-from-video.html">Remove text, captions &amp; timestamps from a video</a></li>
-        <li><a href="no-upload-video-watermark-remover.html">Why a no-upload watermark remover keeps your videos private</a></li>
-        <li><a href="free-video-watermark-remover.html">Free video watermark remover — what “free + local + private” really means</a></li>
+        <li><a href="remove-watermark-from-video.html" data-i18n="g1">Remove a watermark from a video — the no-upload way</a></li>
+        <li><a href="remove-logo-from-video.html" data-i18n="g2">Remove a logo from a video (corner bugs, channel marks)</a></li>
+        <li><a href="remove-text-from-video.html" data-i18n="g3">Remove text, captions &amp; timestamps from a video</a></li>
+        <li><a href="no-upload-video-watermark-remover.html" data-i18n="g4">Why a no-upload watermark remover keeps your videos private</a></li>
+        <li><a href="free-video-watermark-remover.html" data-i18n="g5">Free video watermark remover — what “free + local + private” really means</a></li>
       </ul>
     </div>
   </section>
@@ -660,6 +660,11 @@ const I18N = {
     g3: 'Export clean MP4', g3d: 'Every frame is repaired with the same mask, then re-encoded with hardware acceleration. Preview a frame first to tune the method.',
     tipH: 'Tips for the cleanest result',
     gH2b: 'Deep-dive guides',
+    g1: 'Remove a watermark from a video — the no-upload way',
+    g2: 'Remove a logo from a video (corner bugs, channel marks)',
+    g3: 'Remove text, captions & timestamps from a video',
+    g4: 'Why a no-upload watermark remover keeps your videos private',
+    g5: 'Free video watermark remover — what "free + local + private" really means',
     tip1: 'Static watermarks only (v1): the mask applies to the whole video, so the watermark should stay in one place. Moving watermarks are on the roadmap.',
     tip2: 'Quick fix suits plain backgrounds (sky, walls, water); Smart repair handles most logos; Fine repair rebuilds texture — slower but strongest.',
     tip3: 'A watermark over busy motion (faces, text) can’t be perfectly rebuilt by any tool — try Soft blur for an unobtrusive result.',
@@ -717,6 +722,11 @@ const I18N = {
     g3: '导出干净 MP4', g3d: '每一帧都用同一蒙版修复，再经硬件加速重新编码。可先预览单帧调整方式。',
     tipH: '效果最好的几个技巧',
     gH2b: '深度指南',
+    g1: '视频去水印完整指南（无需上传）',
+    g2: '去除视频角落 logo（频道标/台标）',
+    g3: '去除视频文字、字幕与时间码',
+    g4: '为什么“无上传”的去水印工具更保护隐私',
+    g5: '免费视频去水印：“免费+本地+隐私”的真正含义',
     tip1: 'v1 仅支持静态水印：蒙版作用于整段视频，水印需全程位置不变。移动水印已在路线图中。',
     tip2: '快速修复适合简单背景（天空、墙面、水面）；智能修复适合多数 logo；精细修复重建纹理——最慢但最强。',
     tip3: '水印盖在剧烈运动的画面（人脸、文字）上时，任何工具都无法完美重建——试试柔化模糊。',
