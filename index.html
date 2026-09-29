@@ -1,0 +1,1185 @@
+<!doctype html>
+<html lang="en" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VidGone — Free Online Video Watermark Remover</title>
+<meta name="description" content="Remove watermarks from videos online for free. Brush over the watermark, get a clean MP4 — 100% in your browser, no upload, no signup, no limits. 免费在线视频去水印，视频不上传。">
+<link rel="canonical" href="https://vidgone.kuige.me/">
+<link rel="alternate" hreflang="en" href="https://vidgone.kuige.me/?lang=en">
+<link rel="alternate" hreflang="zh" href="https://vidgone.kuige.me/?lang=zh">
+<link rel="alternate" hreflang="x-default" href="https://vidgone.kuige.me/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="VidGone">
+<meta property="og:title" content="VidGone — Free Online Video Watermark Remover">
+<meta property="og:description" content="Brush over any watermark and export a clean MP4 — processed entirely in your browser. No upload, no signup, free forever.">
+<meta property="og:url" content="https://vidgone.kuige.me/">
+<meta property="og:image" content="https://vidgone.kuige.me/og-image.png">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="zh_CN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="VidGone — Free Online Video Watermark Remover">
+<meta name="twitter:description" content="Brush over any watermark and export a clean MP4 — processed entirely in your browser. No upload, no signup, free forever.">
+<meta name="twitter:image" content="https://vidgone.kuige.me/og-image.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2310b981'/%3E%3Cpath d='M18 20 L32 46 L46 20' fill='none' stroke='%23fff' stroke-width='7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" id="favicon">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"VidGone","url":"https://vidgone.kuige.me/","applicationCategory":"MultimediaApplication","operatingSystem":"Any (browser-based)","description":"Free online video watermark remover. Brush over static watermarks and export a clean MP4 — processed entirely in the browser with WebCodecs, videos never uploaded.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Video watermark removal","Static watermark inpainting","Region blur","Batch-free single file processing","100% local processing"],"inLanguage":["en","zh"]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Is VidGone really free?","acceptedAnswer":{"@type":"Answer","text":"Yes — no signup, no watermark added, no export limits. Everything runs in your browser, so there are no server costs to pass on."}},
+{"@type":"Question","name":"Are my videos uploaded anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. VidGone processes video frames locally with WebCodecs inside your browser tab. Your file never leaves your device — you can even disconnect from the internet after loading the page."}},
+{"@type":"Question","name":"Which watermarks can it remove?","acceptedAnswer":{"@type":"Answer","text":"Static, fixed-position watermarks: platform logos, channel names, date stamps, text overlays. The cleaner the background behind the watermark, the cleaner the result. Moving / animated watermarks are planned for a future update."}},
+{"@type":"Question","name":"Which browsers are supported?","acceptedAnswer":{"@type":"Answer","text":"Any browser with WebCodecs: Chrome and Edge (recommended, hardware-accelerated), Safari 16.4+, Firefox 130+. Export speed depends on your device."}},
+{"@type":"Question","name":"Does exporting reduce quality?","acceptedAnswer":{"@type":"Answer","text":"The video is re-encoded as H.264 MP4. Choose High quality to keep more detail; audio is copied losslessly when the source uses AAC."}}]}
+</script>
+<style>
+:root{
+  --bg:#f6f8f7; --card:#ffffff; --tx:#17211c; --mut:#5d6b64; --bd:#e2e8e5;
+  --accent:#0da271; --accent2:#0e8f8f; --glow:rgba(16,185,129,.12); --chip:#eef4f1;
+  --danger:#d64545; --ok:#0da271;
+}
+[data-theme="dark"]{ --bg:#0b100e; --card:#121915; --tx:#e7efe9; --mut:#93a49b; --bd:#1f2a25; --accent:#34d399; --accent2:#2dd4bf; --glow:rgba(52,211,153,.10); --chip:#17201b; --danger:#f87171; --ok:#34d399; }
+@media (prefers-color-scheme: dark){ :root[data-theme="auto"]{ --bg:#0b100e; --card:#121915; --tx:#e7efe9; --mut:#93a49b; --bd:#1f2a25; --accent:#34d399; --accent2:#2dd4bf; --glow:rgba(52,211,153,.10); --chip:#17201b; --danger:#f87171; --ok:#34d399; } }
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+body{margin:0;font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--tx)}
+a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
+.wrap{max-width:1060px;margin:0 auto;padding:0 20px}
+.topbar{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--bd)}
+.topbar .wrap{display:flex;align-items:center;gap:18px;height:58px}
+.brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:19px;letter-spacing:-.3px;color:var(--tx)}
+.brand .mark{width:26px;height:26px;border-radius:8px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:14px;font-weight:900;box-shadow:0 2px 10px var(--glow)}
+.topnav{display:flex;gap:16px;margin-left:auto;align-items:center}
+.topnav a{color:var(--mut);font-size:14.5px;font-weight:600}
+.tbtn{border:1px solid var(--bd);background:var(--card);color:var(--tx);border-radius:9px;padding:5px 11px;font-size:13px;font-weight:700;cursor:pointer}
+.tbtn:hover{border-color:var(--accent)}
+.hero{padding:52px 0 26px;text-align:center}
+.hero h1{font-size:clamp(28px,5vw,44px);line-height:1.15;margin:0 0 14px;letter-spacing:-.5px}
+.hero p.sub{color:var(--mut);max-width:640px;margin:0 auto 20px;font-size:17px}
+.badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.badge{background:var(--chip);border:1px solid var(--bd);color:var(--mut);border-radius:999px;padding:4px 13px;font-size:13px;font-weight:600}
+.badge.ok{color:var(--ok);border-color:color-mix(in srgb,var(--accent) 35%,var(--bd))}
+.badge.warn{color:#b7791f;border-color:#ecd9a8}
+[data-theme="dark"] .badge.warn{color:#f5c66d;border-color:#4a3d1d}
+.tool{margin:26px 0 10px}
+.panel{background:var(--card);border:1px solid var(--bd);border-radius:16px;box-shadow:0 6px 26px var(--glow)}
+#dropZone{padding:52px 24px;text-align:center;border:2px dashed var(--bd);border-radius:16px;cursor:pointer;transition:.15s}
+#dropZone:hover,#dropZone.drag{border-color:var(--accent);background:var(--glow)}
+#dropZone .big{font-size:19px;font-weight:700;margin:10px 0 4px}
+#dropZone .mut{color:var(--mut);font-size:14px;margin-bottom:16px}
+.btn{display:inline-flex;align-items:center;gap:7px;border:none;border-radius:11px;padding:10px 20px;font-size:15px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;box-shadow:0 3px 14px var(--glow)}
+.btn:hover{filter:brightness(1.06)} .btn:disabled{opacity:.45;cursor:not-allowed;filter:none}
+.btn.ghost{background:var(--chip);color:var(--tx);border:1px solid var(--bd);box-shadow:none}
+.btn.small{padding:6px 13px;font-size:13.5px;border-radius:9px}
+.ed-layout{display:grid;grid-template-columns:1fr 300px;gap:16px;padding:16px}
+@media(max-width:880px){.ed-layout{grid-template-columns:1fr}}
+.ed-stage{position:relative;background:#000;border-radius:12px;overflow:hidden;min-height:220px;display:flex;align-items:center;justify-content:center}
+#stage{max-width:100%;max-height:56vh;display:block;cursor:crosshair;touch-action:none}
+.ed-panel .grp{margin-bottom:14px}
+.ed-panel .lbl{font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);margin-bottom:7px}
+.toolrow{display:flex;gap:6px;flex-wrap:wrap}
+.tchip{flex:1;min-width:56px;border:1px solid var(--bd);background:var(--chip);color:var(--tx);border-radius:9px;padding:7px 4px;font-size:13px;font-weight:700;cursor:pointer;text-align:center}
+.tchip.on{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border-color:transparent}
+input[type=range]{width:100%;accent-color:var(--accent)}
+.method{display:flex;flex-direction:column;gap:6px}
+.mcard{border:1px solid var(--bd);border-radius:10px;padding:8px 11px;cursor:pointer;background:var(--card)}
+.mcard.on{border-color:var(--accent);background:var(--glow)}
+.mcard b{font-size:14px} .mcard span{display:block;font-size:12.5px;color:var(--mut)}
+.ed-timeline{display:flex;align-items:center;gap:10px;padding:0 16px 16px}
+.ed-timeline .time{font-variant-numeric:tabular-nums;color:var(--mut);font-size:13px;min-width:86px;text-align:center}
+.prog{padding:0 16px 16px}
+.prog .bar{height:9px;border-radius:99px;background:var(--chip);overflow:hidden}
+.prog .bar>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .2s}
+.prog .ptxt{display:flex;justify-content:space-between;font-size:13px;color:var(--mut);margin-top:6px;font-variant-numeric:tabular-nums}
+#previewWrap{position:absolute;inset:0;background:rgba(0,0,0,.75);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;z-index:20}
+#previewWrap .pv-stage{position:relative;max-width:92%;max-height:70vh}
+#previewWrap canvas{max-width:100%;max-height:70vh;display:block;border-radius:10px}
+#pvTop{position:absolute;inset:0;overflow:hidden}
+.pv-range{width:min(480px,80%)}
+.pv-tag{position:absolute;top:8px;font-size:12px;font-weight:800;color:#fff;background:rgba(0,0,0,.55);padding:2px 9px;border-radius:99px}
+#resultWrap{padding:26px;text-align:center}
+#resultWrap h3{margin:4px 0 6px;font-size:21px}
+#resultWrap .stats{color:var(--mut);font-size:14.5px;margin-bottom:16px}
+.funnel{margin:18px auto 0;max-width:430px;border:1px solid var(--bd);border-radius:13px;padding:13px 16px;display:flex;align-items:center;gap:12px;text-align:left;background:var(--chip)}
+.funnel b{font-size:14.5px} .funnel div{flex:1;font-size:13px;color:var(--mut)}
+.funnel .x{cursor:pointer;color:var(--mut);border:none;background:none;font-size:17px;line-height:1;padding:4px}
+section.info{padding:34px 0}
+section.info h2{font-size:25px;letter-spacing:-.3px;margin:0 0 16px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:760px){.steps{grid-template-columns:1fr}}
+.step{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:18px}
+.step .n{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;margin-bottom:10px}
+.step b{font-size:16px} .step p{color:var(--mut);font-size:14px;margin:6px 0 0}
+.tips{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:18px 22px}
+.tips ul{margin:8px 0 0;padding-left:20px;color:var(--mut);font-size:14.5px}
+.tips li{margin:6px 0}
+details{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:13px 18px;margin-bottom:9px}
+details summary{cursor:pointer;font-weight:700;font-size:15.5px}
+details p{color:var(--mut);font-size:14.5px;margin:9px 0 2px}
+footer{border-top:1px solid var(--bd);margin-top:30px;padding:26px 0 34px;color:var(--mut);font-size:13.5px;text-align:center}
+#toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:var(--tx);color:var(--bg);padding:9px 18px;border-radius:11px;font-size:14px;font-weight:600;opacity:0;pointer-events:none;transition:.25s;z-index:99}
+#vid{position:fixed;left:-10010px;top:0;width:320px;height:auto;pointer-events:none}
+#toast.on{opacity:1}
+.hidden{display:none!important}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="wrap">
+  <span class="brand"><span class="mark">V</span>VidGone</span>
+  <nav class="topnav">
+    <a href="#tool" data-i18n="navTool">Tool</a>
+    <a href="#guide" data-i18n="navGuide">Guide</a>
+    <a href="#faq" data-i18n="navFaq">FAQ</a>
+    <button class="tbtn" id="langBtn">中文</button>
+    <button class="tbtn" id="themeBtn" title="Theme">🌗</button>
+  </nav>
+</div></header>
+
+<main class="wrap">
+  <section class="hero">
+    <h1 data-i18n="h1">Free Video Watermark Remover</h1>
+    <p class="sub" data-i18n="sub">Brush over any watermark in your video and export a clean MP4 — processed entirely in your browser. No upload, no signup, free forever.</p>
+    <div class="badges">
+      <span class="badge ok" data-i18n="b1">100% local — video never leaves your device</span>
+      <span class="badge" data-i18n="b2">Free · no limits · no signup</span>
+      <span class="badge" id="supportBadge" data-i18n="b3">Checking browser support…</span>
+    </div>
+  </section>
+
+  <section id="tool" class="tool">
+    <div id="dropZone" class="panel">
+      <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="color:var(--accent)"><path d="M12 16V4m0 0l-4 4m4-4l4 4" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 15v3a2 2 0 002 2h12a2 2 0 002-2v-3" stroke-linecap="round"/></svg>
+      <div class="big" data-i18n="dz1">Drop a video here, or click to choose</div>
+      <div class="mut" data-i18n="dz2">MP4 / MOV / WebM · your file is processed locally, nothing is uploaded</div>
+      <button class="btn ghost small" id="demoBtn" data-i18n="dz3">▶ Try the sample video</button>
+      <input type="file" id="fileInput" accept="video/mp4,video/quicktime,video/webm,video/*" class="hidden">
+    </div>
+
+    <div id="editor" class="panel hidden">
+      <div class="ed-layout">
+        <div>
+          <div class="ed-stage" id="stageBox">
+            <canvas id="stage"></canvas>
+            <div id="previewWrap" class="hidden">
+              <div class="pv-stage">
+                <canvas id="pvOrig"></canvas>
+                <div id="pvTop"><canvas id="pvProc"></canvas></div>
+                <span class="pv-tag" style="left:8px">Original</span>
+                <span class="pv-tag" style="right:8px" data-i18n="pvTag">Cleaned</span>
+              </div>
+              <input type="range" class="pv-range" id="pvRange" min="0" max="100" value="50">
+              <button class="btn ghost small" id="pvClose" data-i18n="pvClose">Back to editing</button>
+            </div>
+          </div>
+          <div class="ed-timeline">
+            <button class="tbtn" id="playBtn">▶</button>
+            <input type="range" id="seek" min="0" max="1000" value="0">
+            <span class="time" id="timeLbl">0:00 / 0:00</span>
+          </div>
+        </div>
+        <aside class="ed-panel">
+          <div class="grp"><div class="lbl" data-i18n="lTool">Mask tool</div>
+            <div class="toolrow">
+              <button class="tchip on" id="tBrush" data-i18n="tBrush">🖌 Brush</button>
+              <button class="tchip" id="tRect" data-i18n="tRect">▭ Box</button>
+              <button class="tchip" id="tEraser" data-i18n="tEraser">◌ Erase</button>
+            </div>
+          </div>
+          <div class="grp" id="brushGrp"><div class="lbl" data-i18n="lSize">Brush size</div>
+            <input type="range" id="brushSize" min="8" max="90" value="34">
+          </div>
+          <div class="grp"><div class="lbl" data-i18n="lEdit">Edits</div>
+            <div class="toolrow">
+              <button class="tchip" id="undoBtn" data-i18n="tUndo">↩ Undo</button>
+              <button class="tchip" id="clearBtn" data-i18n="tClear">✕ Clear</button>
+            </div>
+          </div>
+          <div class="grp"><div class="lbl" data-i18n="lMethod">Removal method</div>
+            <div class="method">
+              <div class="mcard" data-m="fast"><b data-i18n="mFast">Quick fix</b><span data-i18n="mFastD">Fast diffusion fill — small marks, plain backgrounds</span></div>
+              <div class="mcard on" data-m="std"><b data-i18n="mStd">Smart repair</b><span data-i18n="mStdD">Directional inpainting — best balance for most logos</span></div>
+              <div class="mcard" data-m="fine"><b data-i18n="mFine">Fine repair</b><span data-i18n="mFineD">Multi-scale rebuild — slowest, best on complex backgrounds</span></div>
+              <div class="mcard" data-m="blur"><b data-i18n="mBlur">Soft blur</b><span data-i18n="mBlurD">Soften the region instead of rebuilding it</span></div>
+            </div>
+          </div>
+          <div class="grp"><div class="lbl" data-i18n="lQuality">Export quality</div>
+            <select id="quality" style="width:100%;padding:8px 10px;border-radius:9px;border:1px solid var(--bd);background:var(--card);color:var(--tx);font-size:14px">
+              <option value="high" data-i18n="qHigh">High — keeps most detail</option>
+              <option value="med" selected data-i18n="qMed">Balanced — recommended</option>
+              <option value="low" data-i18n="qLow">Small file</option>
+            </select>
+          </div>
+          <div class="grp">
+            <button class="btn ghost small" id="previewBtn" style="width:100%;justify-content:center;margin-bottom:8px" data-i18n="bPreview">🔍 Preview this frame</button>
+            <button class="btn" id="exportBtn" style="width:100%;justify-content:center" disabled data-i18n="bExport">Export clean MP4</button>
+            <button class="btn ghost" id="cancelBtn" style="width:100%;justify-content:center;margin-top:8px" hidden data-i18n="bCancel">Cancel</button>
+            <div class="prog hidden" id="progWrap" style="padding:12px 0 0">
+              <div class="bar"><i id="progBar"></i></div>
+              <div class="ptxt"><span id="progPct">0%</span><span id="progEta"></span></div>
+            </div>
+            <button class="btn ghost small" id="newFileBtn" style="width:100%;justify-content:center;margin-top:12px" data-i18n="bNew">↺ Choose another video</button>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <div id="resultWrap" class="panel hidden">
+      <h3 data-i18n="rDone">✅ Done — your clean video is ready</h3>
+      <div class="stats" id="resultStats"></div>
+      <a class="btn" id="dlBtn" download data-i18n="rDl">⬇ Download clean MP4</a>
+      <button class="btn ghost" id="againBtn" style="margin-left:8px" data-i18n="rAgain">Process another</button>
+      <div class="funnel hidden" id="funnel">
+        <div><b data-i18n="fTitle">Images with watermarks too?</b><br><span data-i18n="fWhy">MarkGone removes watermarks from photos — same brush, same privacy.</span></div>
+        <a class="btn small" href="https://markgone.kuige.me/?from=vidgone" target="_blank" rel="noopener" data-i18n="fBtn">Open MarkGone</a>
+        <button class="x" id="funnelX" aria-label="close">✕</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="guide" class="info">
+    <h2 data-i18n="gH2">How it works</h2>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><b data-i18n="g1">Load a video</b><p data-i18n="g1d">Drop in an MP4/MOV/WebM, or try the sample. The file stays on your device — processing runs in this browser tab.</p></div>
+      <div class="step"><div class="n">2</div><b data-i18n="g2">Mark the watermark</b><p data-i18n="g2d">Brush over it or draw a box. Slightly cover beyond the logo edges for the cleanest rebuild. Scrub the timeline to check every scene.</p></div>
+      <div class="step"><div class="n">3</div><b data-i18n="g3">Export clean MP4</b><p data-i18n="g3d">Every frame is repaired with the same mask, then re-encoded with hardware acceleration. Preview a frame first to tune the method.</p></div>
+    </div>
+    <div class="tips" style="margin-top:16px">
+      <b data-i18n="tipH">Tips for the cleanest result</b>
+      <ul>
+        <li data-i18n="tip1">Static watermarks only (v1): the mask applies to the whole video, so the watermark should stay in one place. Moving watermarks are on the roadmap.</li>
+        <li data-i18n="tip2">Quick fix suits plain backgrounds (sky, walls, water); Smart repair handles most logos; Fine repair rebuilds texture — slower but strongest.</li>
+        <li data-i18n="tip3">A watermark over busy motion (faces, text) can’t be perfectly rebuilt by any tool — try Soft blur for an unobtrusive result.</li>
+        <li data-i18n="tip4">Only remove watermarks from videos you own or have permission to edit. Removing others’ credits to repost content may infringe copyright.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="faq" class="info">
+    <h2 data-i18n="faqH2">FAQ</h2>
+    <details><summary data-i18n="fq1">Is VidGone really free?</summary><p data-i18n="fq1d">Yes — no signup, no watermark added, no export limits. Everything runs in your browser, so there are no server costs to pass on.</p></details>
+    <details><summary data-i18n="fq2">Are my videos uploaded anywhere?</summary><p data-i18n="fq2d">No. VidGone processes video frames locally with WebCodecs inside your browser tab. Your file never leaves your device — you can even disconnect from the internet after loading the page.</p></details>
+    <details><summary data-i18n="fq3">Which watermarks can it remove?</summary><p data-i18n="fq3d">Static, fixed-position watermarks: platform logos, channel names, date stamps, text overlays. The cleaner the background behind the watermark, the cleaner the result. Moving / animated watermarks are planned for a future update.</p></details>
+    <details><summary data-i18n="fq4">Which browsers are supported?</summary><p data-i18n="fq4d">Any browser with WebCodecs: Chrome and Edge (recommended, hardware-accelerated), Safari 16.4+, Firefox 130+. Export speed depends on your device.</p></details>
+    <details><summary data-i18n="fq5">Does exporting reduce quality?</summary><p data-i18n="fq5d">The video is re-encoded as H.264 MP4. Choose High quality to keep more detail; audio is copied losslessly when the source uses AAC.</p></details>
+  </section>
+</main>
+
+<footer><div class="wrap">
+  <div data-i18n="foot1">VidGone — free forever. Your videos never leave your device.</div>
+  <div style="margin-top:5px">© 2026 KuiGe · <a href="https://kuige.me/">kuige.me</a> · <a href="https://markgone.kuige.me/">MarkGone (image version)</a></div>
+</div></footer>
+
+<div id="toast"></div>
+<video id="vid" playsinline muted crossorigin="anonymous"></video>
+
+<script id="engineSrc">
+/* VidGone inpainting engine — pure JS, no DOM. Used by the page (per-frame, region-bounded)
+   and by scripts/test-engine.mjs in Node. All scratch buffers are reused across calls. */
+window.VG_ENGINE = (function(){
+  const CAP = 4.2e6; // max region pixels
+  let W = 0, H = 0, N = 0;
+  let rgb = null, bin = null, dist = null, holeIdx = null, filled = null, tmpA = null, tmpB = null, mRow = null;
+
+  function ensure(w, h){
+    const n = w * h;
+    if (n > CAP) throw new Error('region too large');
+    if (n <= N) return;
+    N = n; W = w; H = h;
+    rgb = new Float32Array(n * 3);
+    bin = new Uint8Array(n);
+    dist = new Float32Array(n);
+    holeIdx = new Int32Array(n);
+    tmpA = new Float32Array(n * 3);
+    tmpB = new Float32Array(n * 3);
+  }
+  function ensureFilled(holes){ if (!filled || filled.length < holes * 3) filled = new Float32Array(holes * 3 + 3072); }
+  void filled; void mRow;
+
+  function dilate(b, w, h, r){
+    if (r <= 0) return b;
+    const t = new Uint8Array(b.length);
+    for (let y = 0; y < h; y++){
+      const o = y * w;
+      for (let x = 0; x < w; x++){
+        let v = 0;
+        const x0 = Math.max(0, x - r), x1 = Math.min(w - 1, x + r);
+        for (let k = x0; k <= x1; k++) if (b[o + k]) { v = 1; break; }
+        t[o + x] = v;
+      }
+    }
+    for (let x = 0; x < w; x++){
+      for (let y = 0; y < h; y++){
+        let v = 0;
+        const y0 = Math.max(0, y - r), y1 = Math.min(h - 1, y + r);
+        for (let k = y0; k <= y1; k++) if (t[k * w + x]) { v = 1; break; }
+        b[y * w + x] = v;
+      }
+    }
+    return b;
+  }
+
+  function distTransform(b, w, h){
+    const n = w * h;
+    const INF = 1e9;
+    for (let i = 0; i < n; i++) dist[i] = b[i] ? INF : 0;
+    for (let y = 0; y < h; y++) for (let x = 0; x < w; x++){
+      const i = y * w + x; if (dist[i] === 0) continue;
+      let v = dist[i];
+      if (x > 0) v = Math.min(v, dist[i - 1] + 3);
+      if (y > 0){ v = Math.min(v, dist[i - w] + 3); if (x > 0) v = Math.min(v, dist[i - w - 1] + 4); if (x < w - 1) v = Math.min(v, dist[i - w + 1] + 4); }
+      dist[i] = v;
+    }
+    for (let y = h - 1; y >= 0; y--) for (let x = w - 1; x >= 0; x--){
+      const i = y * w + x; if (dist[i] === 0) continue;
+      let v = dist[i];
+      if (x < w - 1) v = Math.min(v, dist[i + 1] + 3);
+      if (y < h - 1){ v = Math.min(v, dist[i + w] + 3); if (x < w - 1) v = Math.min(v, dist[i + w + 1] + 4); if (x > 0) v = Math.min(v, dist[i + w - 1] + 4); }
+      dist[i] = v;
+    }
+  }
+
+  // Jacobi diffusion restricted to holes (boundary = known pixels)
+  function diffuse(src, dst, b, w, h, iters){
+    for (let it = 0; it < iters; it++){
+      const s = (it % 2 === 0) ? src : dst, d = (it % 2 === 0) ? dst : src;
+      for (let y = 0; y < h; y++) for (let x = 0; x < w; x++){
+        const i = y * w + x;
+        if (!b[i]){ d[i*3] = s[i*3]; d[i*3+1] = s[i*3+1]; d[i*3+2] = s[i*3+2]; continue; }
+        const l = x > 0 ? i - 1 : i, r = x < w - 1 ? i + 1 : i, u = y > 0 ? i - w : i, dn = y < h - 1 ? i + w : i;
+        for (let c = 0; c < 3; c++) d[i*3+c] = (s[l*3+c] + s[r*3+c] + s[u*3+c] + s[dn*3+c]) * 0.25;
+      }
+    }
+    // copy active buffer back into src
+    const last = (iters % 2 === 0) ? src : dst;
+    if (last !== src) src.set(last);
+  }
+
+  // BFS-average fill (fast mode core): process holes in ascending distance order
+  function fillBFS(w, h){
+    const n = w * h;
+    let holes = 0;
+    for (let i = 0; i < n; i++) if (bin[i]) holeIdx[holes++] = i;
+    distTransform(bin, w, h);
+    let maxD = 0;
+    for (let k = 0; k < holes; k++) if (dist[holeIdx[k]] > maxD) maxD = dist[holeIdx[k]];
+    const maxD2 = Math.round(maxD) + 1;
+    const buckets = new Array(maxD2 + 1); for (let i = 0; i <= maxD2; i++) buckets[i] = [];
+    for (let k = 0; k < holes; k++) buckets[Math.min(maxD2, Math.round(dist[holeIdx[k]]))].push(holeIdx[k]);
+    const filledFlag = new Uint8Array(n);
+    for (let i = 0; i < n; i++) filledFlag[i] = bin[i] ? 0 : 1;
+    for (let d = 1; d <= maxD2; d++){
+      const list = buckets[d]; if (!list) continue;
+      for (const i of list){
+        const x = i % w, y = (i / w) | 0;
+        let r = 0, g = 0, b = 0, cnt = 0;
+        for (let dy = -1; dy <= 1; dy++) for (let dx = -1; dx <= 1; dx++){
+          if (!dx && !dy) continue;
+          const xx = x + dx, yy = y + dy;
+          if (xx < 0 || yy < 0 || xx >= w || yy >= h) continue;
+          const j = yy * w + xx;
+          if (!filledFlag[j]) continue;
+          r += rgb[j*3]; g += rgb[j*3+1]; b += rgb[j*3+2]; cnt++;
+        }
+        if (!cnt){ // isolated: fall back to any neighbor
+          for (let dy = -1; dy <= 1 && !cnt; dy++) for (let dx = -1; dx <= 1 && !cnt; dx++){
+            const xx = x + dx, yy = y + dy;
+            if (xx < 0 || yy < 0 || xx >= w || yy >= h || (!dx && !dy)) continue;
+            r = rgb[(yy*w+xx)*3]; g = rgb[(yy*w+xx)*3+1]; b = rgb[(yy*w+xx)*3+2]; cnt = 1;
+          }
+        }
+        rgb[i*3] = r/cnt; rgb[i*3+1] = g/cnt; rgb[i*3+2] = b/cnt;
+        filledFlag[i] = 1;
+      }
+    }
+    return holes;
+  }
+
+  // Directional (Telea-like) weighted fill — smoother, follows the hole's inward normal
+  function fillDirectional(w, h){
+    const n = w * h;
+    let holes = 0;
+    for (let i = 0; i < n; i++) if (bin[i]) holeIdx[holes++] = i;
+    distTransform(bin, w, h);
+    let maxD = 0;
+    for (let k = 0; k < holes; k++) if (dist[holeIdx[k]] > maxD) maxD = dist[holeIdx[k]];
+    const maxI = Math.ceil(maxD) + 1;
+    const buckets = new Array(maxI + 1); for (let i = 0; i <= maxI; i++) buckets[i] = [];
+    for (let k = 0; k < holes; k++) buckets[Math.min(maxI, Math.ceil(dist[holeIdx[k]]))].push(holeIdx[k]);
+    const filledFlag = new Uint8Array(n);
+    for (let i = 0; i < n; i++) filledFlag[i] = bin[i] ? 0 : 1;
+    for (let d = 1; d <= maxI; d++){
+      const list = buckets[d]; if (!list) continue;
+      for (const i of list){
+        const x = i % w, y = (i / w) | 0;
+        // gradient of the distance field at p → inward normal
+        const xl = x > 0 ? i - 1 : i, xr = x < w - 1 ? i + 1 : i;
+        const yu = y > 0 ? i - w : i, yd = y < h - 1 ? i + w : i;
+        let gx = dist[xr] - dist[xl], gy = dist[yd] - dist[yu];
+        const gn = Math.hypot(gx, gy) || 1; gx /= gn; gy /= gn;
+        let r = 0, g = 0, b = 0, wsum = 0;
+        for (let dy = -2; dy <= 2; dy++) for (let dx = -2; dx <= 2; dx++){
+          if (!dx && !dy) continue;
+          const xx = x + dx, yy = y + dy;
+          if (xx < 0 || yy < 0 || xx >= w || yy >= h) continue;
+          const j = yy * w + xx;
+          if (!filledFlag[j]) continue;
+          const d2 = dx*dx + dy*dy;
+          const dl = Math.hypot(dist[j] - dist[i], 0.5); // level-set term
+          let dot = (-gx*dx - gy*dy) / Math.sqrt(d2);    // q sits toward known region
+          if (dot < 0) dot = 0;
+          const wgt = dot * dot / (d2 * dl);
+          r += rgb[j*3] * wgt; g += rgb[j*3+1] * wgt; b += rgb[j*3+2] * wgt; wsum += wgt;
+        }
+        if (wsum > 0){ rgb[i*3] = r/wsum; rgb[i*3+1] = g/wsum; rgb[i*3+2] = b/wsum; }
+        filledFlag[i] = 1;
+      }
+    }
+    return holes;
+  }
+
+  // Multi-scale rebuild: fill coarse, upsample into holes, refine at full res
+  function fillPyramid(w, h){
+    // level 1: half res
+    const w1 = Math.max(4, w >> 1), h1 = Math.max(4, h >> 1);
+    const b1 = new Uint8Array(w1 * h1), rg1 = new Float32Array(w1 * h1 * 3);
+    for (let y = 0; y < h1; y++) for (let x = 0; x < w1; x++){
+      let hole = 0, r = 0, g = 0, b = 0, n = 0;
+      for (let dy = 0; dy < 2; dy++) for (let dx = 0; dx < 2; dx++){
+        const sx = Math.min(w - 1, x*2 + dx), sy = Math.min(h - 1, y*2 + dy);
+        const si = sy * w + sx;
+        if (bin[si]) hole++; else { r += rgb[si*3]; g += rgb[si*3+1]; b += rgb[si*3+2]; }
+        n++;
+      }
+      const i1 = y * w1 + x;
+      b1[i1] = hole >= 2 ? 1 : 0;
+      rg1[i1*3] = r/n; rg1[i1*3+1] = g/n; rg1[i1*3+2] = b/n;
+    }
+    // fill coarsest with BFS
+    const w2 = Math.max(4, w1 >> 1), h2 = Math.max(4, h1 >> 1);
+    const b2 = new Uint8Array(w2 * h2), rg2 = new Float32Array(w2 * h2 * 3);
+    for (let y = 0; y < h2; y++) for (let x = 0; x < w2; x++){
+      let hole = 0, r = 0, g = 0, b = 0, n = 0;
+      for (let dy = 0; dy < 2; dy++) for (let dx = 0; dx < 2; dx++){
+        const sx = Math.min(w1 - 1, x*2 + dx), sy = Math.min(h1 - 1, y*2 + dy);
+        const si = sy * w1 + sx;
+        if (b1[si]) hole++; else { r += rg1[si*3]; g += rg1[si*3+1]; b += rg1[si*3+2]; }
+        n++;
+      }
+      const i2 = y * w2 + x;
+      b2[i2] = hole >= 2 ? 1 : 0;
+      rg2[i2*3] = r/n; rg2[i2*3+1] = g/n; rg2[i2*3+2] = b/n;
+    }
+    // fill coarsest with BFS
+    {
+      const binSave = bin.slice(); bin.set(b2);
+      fillBFSIn(rg2, b2, w2, h2);
+      bin.set(binSave);
+    }
+    // upsample coarse → level1 holes, then directional refine at level1
+    for (let y = 0; y < h1; y++) for (let x = 0; x < w1; x++){
+      const i1 = y * w1 + x; if (!b1[i1]) continue;
+      const sx = Math.min(w2 - 1, x >> 1), sy = Math.min(h2 - 1, y >> 1);
+      const j2 = sy * w2 + sx;
+      rg1[i1*3] = rg2[j2*3]; rg1[i1*3+1] = rg2[j2*3+1]; rg1[i1*3+2] = rg2[j2*3+2];
+    }
+    {
+      const binSave = bin.slice(); bin.set(b1);
+      fillDirIn(rg1, b1, w1, h1, 6);
+      bin.set(binSave);
+    }
+    // upsample level1 → full-res holes, then directional refine at full res
+    for (let y = 0; y < h; y++) for (let x = 0; x < w; x++){
+      const i = y * w + x; if (!bin[i]) continue;
+      const sx = Math.min(w1 - 1, x >> 1), sy = Math.min(h1 - 1, y >> 1);
+      const j1 = sy * w1 + sx;
+      rgb[i*3] = rg1[j1*3]; rgb[i*3+1] = rg1[j1*3+1]; rgb[i*3+2] = rg1[j1*3+2];
+    }
+    fillDirIn(rgb, bin, w, h, 6);
+    let holes = 0; for (let i = 0; i < w * h; i++) if (bin[i]) holes++;
+    return holes;
+  }
+
+  // BFS fill writing into an arbitrary float buffer (used by pyramid levels)
+  function fillBFSIn(buf, b, w, h){
+    const binSave = bin, rgbSave = rgb;
+    bin = b; rgb = buf;
+    fillBFS(w, h);
+    bin = binSave; rgb = rgbSave;
+  }
+  function fillDirIn(buf, b, w, h, iters){
+    const binSave = bin, rgbSave = rgb;
+    bin = b; rgb = buf;
+    fillDirectional(w, h);
+    if (iters) diffuse(buf, tmpA, b, w, h, iters);
+    bin = binSave; rgb = rgbSave;
+  }
+
+  function process(imageData, mask, opts){
+    const w = imageData.width, h = imageData.height;
+    if (mask.length !== w * h) throw new Error('mask size mismatch');
+    ensure(w, h);
+    const mode = opts.mode || 'std';
+    const data = imageData.data;
+    // copy region RGB, build binary hole map from mask alpha
+    let holes = 0;
+    for (let i = 0; i < w * h; i++){
+      rgb[i*3] = data[i*4]; rgb[i*3+1] = data[i*4+1]; rgb[i*3+2] = data[i*4+2];
+      bin[i] = mask[i] >= 128 ? 1 : 0;
+      if (bin[i]) holes++;
+    }
+    if (holes === 0) return { changed: false };
+    if (holes >= w * h * 0.985) return { changed: false, tooBig: true };
+    dilate(bin, w, h, 2);
+    holes = 0; for (let i = 0; i < w * h; i++) if (bin[i]) holes++;
+    if (mode === 'fast'){
+      fillBFS(w, h);
+      diffuse(rgb, tmpA, bin, w, h, 4);
+    } else if (mode === 'std'){
+      fillDirectional(w, h);
+      diffuse(rgb, tmpA, bin, w, h, 8);
+    } else if (mode === 'fine'){
+      fillPyramid(w, h);
+      diffuse(rgb, tmpA, bin, w, h, 8);
+    } else if (mode === 'blur'){
+      fillBFS(w, h);
+      diffuse(rgb, tmpA, bin, w, h, 30);
+      diffuse(rgb, tmpA, bin, w, h, 30);
+    }
+    // write back, alpha-blended by the (feathered) mask
+    let changed = 0;
+    for (let i = 0; i < w * h; i++){
+      const a = mask[i];
+      if (a === 0 || !bin[i]) continue;
+      const ia = a / 255;
+      data[i*4]   = Math.max(0, Math.min(255, data[i*4]   * (1 - ia) + rgb[i*3]   * ia));
+      data[i*4+1] = Math.max(0, Math.min(255, data[i*4+1] * (1 - ia) + rgb[i*3+1] * ia));
+      data[i*4+2] = Math.max(0, Math.min(255, data[i*4+2] * (1 - ia) + rgb[i*3+2] * ia));
+      changed++;
+    }
+    return { changed: changed > 0 };
+  }
+
+  return { process, _test: { fillBFS, fillDirectional, fillPyramid, dilate, distTransform, diffuse } };
+})();
+</script>
+
+<script type="module">
+const $ = id => document.getElementById(id);
+const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+
+/* ---------------- i18n ---------------- */
+const I18N = {
+  en: {
+    title: 'VidGone — Free Online Video Watermark Remover',
+    navTool: 'Tool', navGuide: 'Guide', navFaq: 'FAQ',
+    h1: 'Free Video Watermark Remover',
+    sub: 'Brush over any watermark in your video and export a clean MP4 — processed entirely in your browser. No upload, no signup, free forever.',
+    b1: '100% local — video never leaves your device', b2: 'Free · no limits · no signup', b3: 'Checking browser support…',
+    b3ok: '✓ Hardware-accelerated in this browser', b3bad: 'Needs Chrome / Edge / Safari 16.4+',
+    dz1: 'Drop a video here, or click to choose', dz2: 'MP4 / MOV / WebM · your file is processed locally, nothing is uploaded', dz3: '▶ Try the sample video',
+    lTool: 'Mask tool', tBrush: '🖌 Brush', tRect: '▭ Box', tEraser: '◌ Erase', lSize: 'Brush size', lEdit: 'Edits', tUndo: '↩ Undo', tClear: '✕ Clear',
+    lMethod: 'Removal method', mFast: 'Quick fix', mFastD: 'Fast diffusion fill — small marks, plain backgrounds',
+    mStd: 'Smart repair', mStdD: 'Directional inpainting — best balance for most logos',
+    mFine: 'Fine repair', mFineD: 'Multi-scale rebuild — slowest, best on complex backgrounds',
+    mBlur: 'Soft blur', mBlurD: 'Soften the region instead of rebuilding it',
+    lQuality: 'Export quality', qHigh: 'High — keeps most detail', qMed: 'Balanced — recommended', qLow: 'Small file',
+    bPreview: '🔍 Preview this frame', bExport: 'Export clean MP4', bCancel: 'Cancel', bNew: '↺ Choose another video',
+    pvTag: 'Cleaned', pvClose: 'Back to editing',
+    rDone: '✅ Done — your clean video is ready', rDl: '⬇ Download clean MP4', rAgain: 'Process another',
+    fTitle: 'Images with watermarks too?', fWhy: 'MarkGone removes watermarks from photos — same brush, same privacy.', fBtn: 'Open MarkGone',
+    gH2: 'How it works', g1: 'Load a video', g1d: 'Drop in an MP4/MOV/WebM, or try the sample. The file stays on your device — processing runs in this browser tab.',
+    g2: 'Mark the watermark', g2d: 'Brush over it or draw a box. Slightly cover beyond the logo edges for the cleanest rebuild. Scrub the timeline to check every scene.',
+    g3: 'Export clean MP4', g3d: 'Every frame is repaired with the same mask, then re-encoded with hardware acceleration. Preview a frame first to tune the method.',
+    tipH: 'Tips for the cleanest result',
+    tip1: 'Static watermarks only (v1): the mask applies to the whole video, so the watermark should stay in one place. Moving watermarks are on the roadmap.',
+    tip2: 'Quick fix suits plain backgrounds (sky, walls, water); Smart repair handles most logos; Fine repair rebuilds texture — slower but strongest.',
+    tip3: 'A watermark over busy motion (faces, text) can’t be perfectly rebuilt by any tool — try Soft blur for an unobtrusive result.',
+    tip4: 'Only remove watermarks from videos you own or have permission to edit. Removing others’ credits to repost content may infringe copyright.',
+    faqH2: 'FAQ', fq1: 'Is VidGone really free?',
+    fq1d: 'Yes — no signup, no watermark added, no export limits. Everything runs in your browser, so there are no server costs to pass on.',
+    fq2: 'Are my videos uploaded anywhere?',
+    fq2d: 'No. VidGone processes video frames locally with WebCodecs inside your browser tab. Your file never leaves your device — you can even disconnect from the internet after loading the page.',
+    fq3: 'Which watermarks can it remove?',
+    fq3d: 'Static, fixed-position watermarks: platform logos, channel names, date stamps, text overlays. The cleaner the background behind the watermark, the cleaner the result. Moving / animated watermarks are planned for a future update.',
+    fq4: 'Which browsers are supported?',
+    fq4d: 'Any browser with WebCodecs: Chrome and Edge (recommended, hardware-accelerated), Safari 16.4+, Firefox 130+. Export speed depends on your device.',
+    fq5: 'Does exporting reduce quality?',
+    fq5d: 'The video is re-encoded as H.264 MP4. Choose High quality to keep more detail; audio is copied losslessly when the source uses AAC.',
+    foot1: 'VidGone — free forever. Your videos never leave your device.',
+    // dynamic
+    loadFail: 'Could not read this video. Try MP4 (H.264) in Chrome or Edge.',
+    noMask: 'Draw a mask over the watermark first',
+    decoding: 'Reading video…', exporting: 'Exporting', canceling: 'Canceling…',
+    canceled: 'Export canceled', doneIn: 'Done in', audioKept: 'audio kept', audioRe: 'audio re-encoded AAC', audioDropped: 'audio dropped (unsupported codec)',
+    errRegion: 'Mask region is too large for one-pass repair — use smaller strokes.',
+    errNoEncoder: 'This browser can’t encode video. Try Chrome or Edge.',
+    errCdn: 'Engine failed to load — check your network and retry.',
+    previewNeedMask: 'Draw a mask first, then preview.',
+    processing: 'Processing…', play: '▶', pause: '❚❚',
+    statFrames: 'frames', statSize: 'size', statTime: 'time',
+  },
+  zh: {
+    title: 'VidGone — 免费在线视频去水印',
+    navTool: '工具', navGuide: '指南', navFaq: '常见问题',
+    h1: '免费在线视频去水印',
+    sub: '涂抹框选视频里的水印，一键导出干净 MP4——全程在浏览器本地完成。不上传、免注册、永久免费。',
+    b1: '100% 本地处理，视频永不上传', b2: '免费 · 无限制 · 免注册', b3: '正在检测浏览器…',
+    b3ok: '✓ 当前浏览器已硬件加速', b3bad: '需要 Chrome / Edge / Safari 16.4+',
+    dz1: '拖入视频，或点击选择文件', dz2: '支持 MP4 / MOV / WebM · 文件仅在本机处理，绝不上传', dz3: '▶ 试试示例视频',
+    lTool: '蒙版工具', tBrush: '🖌 画笔', tRect: '▭ 方框', tEraser: '◌ 擦除', lSize: '画笔大小', lEdit: '编辑', tUndo: '↩ 撤销', tClear: '✕ 清空',
+    lMethod: '去除方式', mFast: '快速修复', mFastD: '快速扩散填充——小水印、简单背景',
+    mStd: '智能修复', mStdD: '方向性修复——多数 logo 的最佳平衡',
+    mFine: '精细修复', mFineD: '多尺度重建——最慢，复杂背景效果最好',
+    mBlur: '柔化模糊', mBlurD: '不重建，把该区域柔化模糊',
+    lQuality: '导出画质', qHigh: '高质量——保留最多细节', qMed: '均衡——推荐', qLow: '小体积',
+    bPreview: '🔍 预览当前帧', bExport: '导出干净 MP4', bCancel: '取消', bNew: '↺ 换一个视频',
+    pvTag: '已去水印', pvClose: '返回编辑',
+    rDone: '✅ 完成——干净的视频已就绪', rDl: '⬇ 下载干净 MP4', rAgain: '再处理一个',
+    fTitle: '图片也有水印？', fWhy: 'MarkGone 图片去水印——同样的涂抹操作，同样的隐私承诺。', fBtn: '打开 MarkGone',
+    gH2: '使用方法', g1: '载入视频', g1d: '拖入 MP4/MOV/WebM 或试试示例。文件留在本机，处理都在当前浏览器标签页完成。',
+    g2: '标记水印', g2d: '用画笔涂抹或画方框，稍微盖过 logo 边缘效果最好。拖动时间轴检查每个镜头。',
+    g3: '导出干净 MP4', g3d: '每一帧都用同一蒙版修复，再经硬件加速重新编码。可先预览单帧调整方式。',
+    tipH: '效果最好的几个技巧',
+    tip1: 'v1 仅支持静态水印：蒙版作用于整段视频，水印需全程位置不变。移动水印已在路线图中。',
+    tip2: '快速修复适合简单背景（天空、墙面、水面）；智能修复适合多数 logo；精细修复重建纹理——最慢但最强。',
+    tip3: '水印盖在剧烈运动的画面（人脸、文字）上时，任何工具都无法完美重建——试试柔化模糊。',
+    tip4: '请只处理你拥有版权或已获授权的视频。去掉他人署名再发布可能构成侵权。',
+    faqH2: '常见问题', fq1: 'VidGone 真的免费吗？',
+    fq1d: '免费——无需注册、不加新水印、不限导出次数。一切在你的浏览器里完成，没有服务器成本需要转嫁。',
+    fq2: '我的视频会被上传吗？',
+    fq2d: '不会。VidGone 用 WebCodecs 在浏览器标签页内逐帧处理，文件不离开你的设备——加载页面后断网也能用。',
+    fq3: '能去除哪类水印？',
+    fq3d: '静态、位置固定的水印：平台 logo、频道名、日期角标、文字贴片。水印背后背景越干净，效果越好。移动/动态水印在后续版本计划中。',
+    fq4: '支持哪些浏览器？',
+    fq4d: '支持 WebCodecs 的浏览器：Chrome 和 Edge（推荐，硬件加速）、Safari 16.4+、Firefox 130+。导出速度取决于设备性能。',
+    fq5: '导出会损失画质吗？',
+    fq5d: '视频会重新编码为 H.264 MP4，选"高质量"可保留更多细节；源音频为 AAC 时无损直拷。',
+    foot1: 'VidGone——永久免费，视频永不离开你的设备。',
+    loadFail: '无法读取该视频，请换用 Chrome/Edge 并使用 MP4 (H.264)。',
+    noMask: '请先在水印上画出蒙版',
+    decoding: '正在读取视频…', exporting: '正在导出', canceling: '正在取消…',
+    canceled: '已取消导出', doneIn: '耗时', audioKept: '音频无损保留', audioRe: '音频已转码 AAC', audioDropped: '音频已丢弃（编码不支持）',
+    errRegion: '蒙版区域过大，请用更小的笔画分块标记。',
+    errNoEncoder: '当前浏览器无法编码视频，请换 Chrome 或 Edge。',
+    errCdn: '处理引擎加载失败，请检查网络后重试。',
+    previewNeedMask: '请先画出蒙版再预览。',
+    processing: '处理中…', play: '▶', pause: '❚❚',
+    statFrames: '帧', statSize: '体积', statTime: '耗时',
+  }
+};
+let lang = 'en';
+function t(k){ return (I18N[lang] && I18N[lang][k]) || I18N.en[k] || k; }
+function fmtBytes(n){ if (!n && n !== 0) return '?'; const u = ['B','KB','MB','GB']; let i = 0; while (n >= 1024 && i < u.length - 1){ n /= 1024; i++; } return n.toFixed(n >= 100 || i === 0 ? 0 : 1) + ' ' + u[i]; }
+function fmtTime(s){ s = Math.max(0, Math.round(s)); return Math.floor(s/60) + ':' + String(s%60).padStart(2, '0'); }
+
+function applyLang(l, persist){
+  lang = l;
+  document.documentElement.lang = l === 'zh' ? 'zh-CN' : 'en';
+  document.title = t('title');
+  const md = document.querySelector('meta[name="description"]');
+  if (md) md.setAttribute('content', l === 'zh'
+    ? '免费在线视频去水印：涂抹框选水印区域，浏览器本地逐帧修复导出 MP4。视频不上传、无需注册、无次数限制。'
+    : 'Remove watermarks from videos online for free. Brush over the watermark, get a clean MP4 — 100% in your browser, no upload, no signup, no limits.');
+  document.querySelectorAll('[data-i18n]').forEach(el => { const v = t(el.getAttribute('data-i18n')); if (v) el.textContent = v; });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el => { el.setAttribute('placeholder', t(el.getAttribute('data-i18n-ph'))); });
+  $('langBtn').textContent = l === 'zh' ? 'EN' : '中文';
+  if (persist) localStorage.setItem('vidgone-lang', l);
+  const u = new URL(location.href);
+  if (l === 'zh') u.searchParams.set('lang', 'zh'); else u.searchParams.delete('lang');
+  history.replaceState(null, '', u);
+}
+$('langBtn').onclick = () => applyLang(lang === 'zh' ? 'en' : 'zh', true);
+
+/* ---------------- theme ---------------- */
+const themeOrder = ['auto', 'light', 'dark'];
+let theme = localStorage.getItem('vidgone-theme') || 'auto';
+if (!themeOrder.includes(theme)) theme = 'auto';
+function applyTheme(){ document.documentElement.setAttribute('data-theme', theme); localStorage.setItem('vidgone-theme', theme); }
+applyTheme();
+$('themeBtn').onclick = () => { theme = themeOrder[(themeOrder.indexOf(theme) + 1) % 3]; applyTheme(); };
+
+/* ---------------- init lang ---------------- */
+{
+  const u = new URL(location.href);
+  const q = u.searchParams.get('lang');
+  const stored = localStorage.getItem('vidgone-lang');
+  const nav = (navigator.language || 'en').toLowerCase().startsWith('zh') ? 'zh' : 'en';
+  applyLang(q === 'zh' || q === 'en' ? q : (stored === 'zh' || stored === 'en' ? stored : nav), false);
+}
+
+/* ---------------- browser support ---------------- */
+const HAS_WEBCODECS = typeof VideoEncoder !== 'undefined' && typeof VideoDecoder !== 'undefined';
+{
+  const b = $('supportBadge');
+  if (HAS_WEBCODECS){ b.classList.add('ok'); b.setAttribute('data-i18n', 'b3ok'); b.textContent = lang === 'zh' ? t('b3ok') : t('b3ok'); }
+  else { b.classList.add('warn'); b.setAttribute('data-i18n', 'b3bad'); b.textContent = t('b3bad'); }
+}
+
+/* ---------------- toast ---------------- */
+let toastTimer = null;
+function toast(msg){
+  const el = $('toast'); el.textContent = msg; el.classList.add('on');
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => el.classList.remove('on'), 3200);
+}
+
+/* ---------------- mediabunny loader ---------------- */
+const MB_URLS = [
+  './mb/mediabunny.min.mjs',  // same-origin (repo asset) — primary
+  'https://cdn.jsdelivr.net/npm/mediabunny@1.61.0/dist/bundles/mediabunny.min.mjs',
+  'https://esm.sh/mediabunny@1.61.0'
+];
+let MB = null;
+async function loadMB(){
+  if (MB) return MB;
+  for (const u of MB_URLS){
+    try { const m = await import(u); if (m && m.Input && m.Output){ MB = m; return MB; } }
+    catch (e) { console.warn('mediabunny source failed', u, e); }
+  }
+  throw new Error(t('errCdn'));
+}
+
+/* ---------------- editor state ---------------- */
+const ed = {
+  file: null, masks: [], tool: 'brush', brushR: 0.045, method: 'std', quality: 'med',
+  drawing: false, curStroke: null, curRect: null, exporting: false, canceling: false, lastResult: null
+};
+const vid = $('vid'), stage = $('stage'), sctx = stage.getContext('2d');
+vid.muted = true;
+let stageW = 0, stageH = 0;
+
+function toastI18n(k){ toast(t(k)); }
+
+function loadFile(file){
+  if (!file) return;
+  if (file.size > 1.2e9){ toast(lang === 'zh' ? '文件超过 1.2GB，可能导致浏览器内存不足' : 'File exceeds 1.2GB — browser memory may run out'); }
+  ed.file = file; ed.masks = [];
+  if (vid.src) URL.revokeObjectURL(vid.src);
+  vid.src = URL.createObjectURL(file);
+  vid.onloadedmetadata = () => {
+    fitStage();
+    $('dropZone').classList.add('hidden');
+    $('editor').classList.remove('hidden');
+    $('resultWrap').classList.add('hidden');
+    vid.currentTime = Math.min(0.033, (vid.duration || 1) / 3); // force first-frame decode (WebKit)
+  };
+  vid.oncanplay = () => render();
+  vid.onerror = () => toastI18n('loadFail');
+}
+
+function fitStage(){
+  const vw = vid.videoWidth || 640, vh = vid.videoHeight || 360;
+  const maxW = Math.min(720, $('stageBox').clientWidth || 720), maxH = Math.max(240, Math.min(window.innerHeight * 0.52, 560));
+  const s = Math.min(maxW / vw, maxH / vh, 1.5);
+  stageW = Math.max(2, Math.round(vw * s)); stageH = Math.max(2, Math.round(vh * s));
+  stage.width = stageW; stage.height = stageH;
+}
+
+function render(){
+  if (!vid.videoWidth) return;
+  if (stage.width !== stageW) { stage.width = stageW; stage.height = stageH; }
+  sctx.drawImage(vid, 0, 0, stageW, stageH);
+  drawMasks(sctx, stageW, stageH, ed.masks);
+}
+
+function drawMasks(ctx, w, h, masks){
+  ctx.save();
+  ctx.fillStyle = 'rgba(255,64,64,.42)';
+  ctx.strokeStyle = 'rgba(255,64,64,.42)';
+  ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+  for (const m of masks){
+    if (m.type === 'stroke'){
+      if (m.pts.length === 1){
+        const p = m.pts[0];
+        ctx.beginPath(); ctx.arc(p[0]*w, p[1]*h, m.r*w, 0, 7); ctx.fill();
+      } else {
+        ctx.lineWidth = Math.max(1, m.r*2*w);
+        ctx.beginPath();
+        m.pts.forEach((p, i) => i ? ctx.lineTo(p[0]*w, p[1]*h) : ctx.moveTo(p[0]*w, p[1]*h));
+        ctx.stroke();
+      }
+    } else if (m.type === 'rect'){
+      ctx.fillRect(m.x*w, m.y*h, m.w*w, m.h*h);
+    }
+  }
+  if (ed.curStroke){
+    ctx.fillStyle = ctx.strokeStyle = 'rgba(255,160,64,.5)';
+    if (ed.curStroke.pts.length === 1){
+      const p = ed.curStroke.pts[0];
+      ctx.beginPath(); ctx.arc(p[0]*w, p[1]*h, ed.curStroke.r*w, 0, 7); ctx.fill();
+    } else {
+      ctx.lineWidth = Math.max(1, ed.curStroke.r*2*w);
+      ctx.beginPath();
+      ed.curStroke.pts.forEach((p, i) => i ? ctx.lineTo(p[0]*w, p[1]*h) : ctx.moveTo(p[0]*w, p[1]*h));
+      ctx.stroke();
+    }
+  }
+  if (ed.curRect){
+    ctx.fillStyle = 'rgba(255,160,64,.5)';
+    const r = ed.curRect;
+    ctx.fillRect(Math.min(r.x,r.x2)*w, Math.min(r.y,r.y2)*h, Math.abs(r.x2-r.x)*w, Math.abs(r.y2-r.y)*h);
+  }
+  ctx.restore();
+}
+
+/* pointer editing */
+function ptOf(e){
+  const r = stage.getBoundingClientRect();
+  return [clamp((e.clientX - r.left) / r.width, 0, 1), clamp((e.clientY - r.top) / r.height, 0, 1)];
+}
+stage.addEventListener('pointerdown', e => {
+  if (ed.exporting) return;
+  const p = ptOf(e);
+  ed.drawing = true;
+  try { stage.setPointerCapture(e.pointerId); } catch(_){}
+  if (ed.tool === 'brush'){ ed.curStroke = { type: 'stroke', pts: [p], r: ed.brushR }; }
+  else if (ed.tool === 'rect'){ ed.curRect = { type: 'rect', x: p[0], y: p[1], x2: p[0], y2: p[1] }; }
+  else if (ed.tool === 'eraser'){ eraseAt(p); }
+  render();
+});
+stage.addEventListener('pointermove', e => {
+  if (!ed.drawing) return;
+  const p = ptOf(e);
+  if (ed.tool === 'brush' && ed.curStroke){
+    const pts = ed.curStroke.pts, last = pts[pts.length - 1];
+    if (Math.hypot((p[0]-last[0])*stageW, (p[1]-last[1])*stageH) > 2) pts.push(p);
+  } else if (ed.tool === 'rect' && ed.curRect){ ed.curRect.x2 = p[0]; ed.curRect.y2 = p[1]; }
+  else if (ed.tool === 'eraser'){ eraseAt(p); }
+  render();
+});
+function finishDraw(){
+  if (ed.curStroke){ ed.masks.push(ed.curStroke); ed.curStroke = null; }
+  if (ed.curRect){
+    const r = ed.curRect;
+    if (Math.abs(r.x2-r.x) > 0.004 && Math.abs(r.y2-r.y) > 0.004)
+      ed.masks.push({ type: 'rect', x: Math.min(r.x,r.x2), y: Math.min(r.y,r.y2), w: Math.abs(r.x2-r.x), h: Math.abs(r.y2-r.y) });
+    ed.curRect = null;
+  }
+  ed.drawing = false;
+  updExportBtn(); render();
+}
+stage.addEventListener('pointerup', finishDraw);
+stage.addEventListener('pointercancel', finishDraw);
+function eraseAt(p){
+  const hit = m => {
+    if (m.type === 'stroke') return m.pts.some(q => Math.hypot((q[0]-p[0])*stageW, (q[1]-p[1])*stageH) < Math.max(6, m.r*stageW));
+    return p[0] > m.x && p[0] < m.x + m.w && p[1] > m.y && p[1] < m.y + m.h;
+  };
+  ed.masks = ed.masks.filter(m => !hit(m));
+}
+
+/* tools UI */
+const toolBtns = { brush: $('tBrush'), rect: $('tRect'), eraser: $('tEraser') };
+for (const [k, btn] of Object.entries(toolBtns)){
+  btn.onclick = () => {
+    ed.tool = k;
+    Object.entries(toolBtns).forEach(([kk, b]) => b.classList.toggle('on', kk === k));
+    $('brushGrp').style.display = k === 'brush' ? '' : 'none';
+    stage.style.cursor = k === 'eraser' ? 'cell' : 'crosshair';
+  };
+}
+$('brushSize').oninput = e => { ed.brushR = clamp(e.target.value / 720, 0.012, 0.14); };
+$('undoBtn').onclick = () => { ed.masks.pop(); updExportBtn(); render(); };
+$('clearBtn').onclick = () => { ed.masks = []; updExportBtn(); render(); };
+document.querySelectorAll('.mcard').forEach(c => {
+  c.onclick = () => {
+    ed.method = c.dataset.m;
+    document.querySelectorAll('.mcard').forEach(x => x.classList.toggle('on', x === c));
+  };
+});
+function updExportBtn(){ $('exportBtn').disabled = ed.masks.length === 0 || ed.exporting; }
+
+/* playback */
+$('playBtn').onclick = () => { if (vid.paused) vid.play(); else vid.pause(); };
+vid.onplay = () => $('playBtn').textContent = t('pause');
+vid.onpause = () => { $('playBtn').textContent = t('play'); render(); };
+let seeking = false;
+$('seek').oninput = e => { seeking = true; if (vid.duration) vid.currentTime = (e.target.value / 1000) * vid.duration; };
+vid.ontimeupdate = () => {
+  if (!seeking && vid.duration) $('seek').value = Math.round(vid.currentTime / vid.duration * 1000);
+  $('timeLbl').textContent = fmtTime(vid.currentTime || 0) + ' / ' + fmtTime(vid.duration || 0);
+};
+vid.onseeked = () => { seeking = false; render(); };
+
+/* file pick / drop / demo */
+$('dropZone').onclick = e => { if (e.target.id !== 'demoBtn') $('fileInput').click(); };
+$('fileInput').onchange = e => loadFile(e.target.files[0]);
+$('demoBtn').onclick = async e => {
+  e.stopPropagation();
+  try {
+    const r = await fetch('demo/flower.mp4');
+    if (!r.ok) throw new Error(r.status);
+    loadFile(new File([await r.blob()], 'flower-demo.mp4', { type: 'video/mp4' }));
+  } catch (err) { toastI18n('loadFail'); }
+};
+const dz = $('dropZone');
+['dragover', 'dragenter'].forEach(ev => dz.addEventListener(ev, e => { e.preventDefault(); dz.classList.add('drag'); }));
+['dragleave', 'drop'].forEach(ev => dz.addEventListener(ev, e => { e.preventDefault(); dz.classList.remove('drag'); }));
+dz.addEventListener('drop', e => { const f = e.dataTransfer.files && e.dataTransfer.files[0]; if (f) loadFile(f); });
+$('newFileBtn').onclick = () => { $('fileInput').value = ''; $('fileInput').click(); };
+
+/* ---------------- mask rasterization ---------------- */
+function rasterMask(w, h){
+  const c = document.createElement('canvas');
+  c.width = w; c.height = h;
+  const ctx = c.getContext('2d', { willReadFrequently: true });
+  ctx.fillStyle = '#000'; ctx.fillRect(0, 0, w, h);
+  ctx.filter = 'blur(' + Math.max(1, w / 900).toFixed(2) + 'px)';
+  ctx.fillStyle = '#fff'; ctx.strokeStyle = '#fff';
+  ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+  for (const m of ed.masks){
+    if (m.type === 'stroke'){
+      ctx.lineWidth = Math.max(1.5, m.r * 2 * w);
+      ctx.beginPath();
+      m.pts.forEach((p, i) => i ? ctx.lineTo(p[0]*w, p[1]*h) : ctx.moveTo(p[0]*w, p[1]*h));
+      if (m.pts.length === 1){ const p = m.pts[0]; ctx.arc(p[0]*w, p[1]*h, m.r*w, 0, 7); ctx.fill(); }
+      else ctx.stroke();
+    } else if (m.type === 'rect'){
+      ctx.fillRect(m.x*w, m.y*h, m.w*w, m.h*h);
+    }
+  }
+  ctx.filter = 'none';
+  const img = ctx.getImageData(0, 0, w, h);
+  const mask = new Uint8Array(w * h);
+  for (let i = 0; i < w * h; i++) mask[i] = img.data[i*4];
+  return { canvas: c, mask };
+}
+
+function regionBBox(mask, w, h){
+  let x0 = w, y0 = h, x1 = -1, y1 = -1;
+  for (let y = 0; y < h; y++){
+    const row = y * w;
+    for (let x = 0; x < w; x++){
+      if (mask[row + x] >= 128){
+        if (x < x0) x0 = x; if (x > x1) x1 = x;
+        if (y < y0) y0 = y; if (y > y1) y1 = y;
+      }
+    }
+  }
+  if (x1 < 0) return null;
+  const pad = Math.max(18, Math.round(Math.max(w, h) * 0.012));
+  x0 = Math.max(0, x0 - pad); y0 = Math.max(0, y0 - pad);
+  x1 = Math.min(w - 1, x1 + pad); y1 = Math.min(h - 1, y1 + pad);
+  return { x: x0, y: y0, w: x1 - x0 + 1, h: y1 - y0 + 1 };
+}
+
+function engineApply(pctx, maskImg, w, h, mode){
+  const bbox = regionBBox(maskImg.mask, w, h);
+  if (!bbox) return false;
+  if (bbox.w * bbox.h > 4.0e6) throw new Error(t('errRegion'));
+  const img = pctx.getImageData(bbox.x, bbox.y, bbox.w, bbox.h);
+  const mw = w, mh = h;
+  const sub = new Uint8Array(bbox.w * bbox.h);
+  for (let y = 0; y < bbox.h; y++){
+    const src = (bbox.y + y) * mw + bbox.x;
+    sub.set(maskImg.mask.subarray(src, src + bbox.w), y * bbox.w);
+  }
+  void mh;
+  const res = window.VG_ENGINE.process(img, sub, { mode });
+  if (res.changed) pctx.putImageData(img, bbox.x, bbox.y);
+  return res.changed;
+}
+
+/* ---------------- frame preview ---------------- */
+$('previewBtn').onclick = () => {
+  if (!ed.masks.length){ toastI18n('previewNeedMask'); return; }
+  if (!vid.videoWidth) return;
+  vid.pause();
+  const pw = stageW, ph = stageH;
+  const pc = document.createElement('canvas'); pc.width = pw; pc.height = ph;
+  const pctx = pc.getContext('2d', { willReadFrequently: true });
+  pctx.drawImage(vid, 0, 0, pw, ph);
+  const mk = rasterMask(pw, ph);
+  try { engineApply(pctx, mk, pw, ph, ed.method); }
+  catch (e){ toast(e.message); return; }
+  const oc = document.createElement('canvas'); oc.width = pw; oc.height = ph;
+  oc.getContext('2d').drawImage(vid, 0, 0, pw, ph);
+  $('pvOrig').width = pw; $('pvOrig').height = ph; $('pvOrig').getContext('2d').drawImage(oc, 0, 0);
+  $('pvProc').width = pw; $('pvProc').height = ph; $('pvProc').getContext('2d').drawImage(pc, 0, 0);
+  $('pvTop').style.width = '50%';
+  $('pvRange').value = 50;
+  $('previewWrap').classList.remove('hidden');
+};
+$('pvRange').oninput = e => { $('pvTop').style.width = e.target.value + '%'; };
+$('pvClose').onclick = () => $('previewWrap').classList.add('hidden');
+
+/* ---------------- export pipeline ---------------- */
+const BPP = { high: 0.10, med: 0.06, low: 0.035 };
+
+function setProg(pct, framesTxt, etaTxt){
+  $('progBar').style.width = (pct * 100).toFixed(1) + '%';
+  $('progPct').textContent = Math.round(pct * 100) + '%';
+  $('progEta').textContent = (framesTxt ? framesTxt + ' · ' : '') + (etaTxt || '');
+}
+function exportUI(on){
+  ed.exporting = on;
+  $('exportBtn').disabled = on || !ed.masks.length;
+  $('cancelBtn').hidden = !on;
+  $('previewBtn').disabled = on;
+  $('progWrap').classList.toggle('hidden', !on);
+  if (on) setProg(0, '', t('processing'));
+}
+
+$('cancelBtn').onclick = () => { ed.canceling = true; $('cancelBtn').disabled = true; $('cancelBtn').textContent = t('canceling'); };
+
+$('exportBtn').onclick = async () => {
+  if (!ed.masks.length){ toastI18n('noMask'); return; }
+  if (!HAS_WEBCODECS){ toastI18n('errNoEncoder'); return; }
+  if (ed.exporting) return;
+  let MBm;
+  try { MBm = await loadMB(); }
+  catch (e){ toastI18n('errCdn'); return; }
+  exportUI(true);
+  ed.canceling = false; $('cancelBtn').disabled = false; $('cancelBtn').textContent = t('bCancel');
+  const t0 = performance.now();
+  let audioNote = '';
+  try {
+    const { Input, ALL_FORMATS, BlobSource, VideoSampleSink, VideoSampleSource, VideoSample, Output, Mp4OutputFormat, BufferTarget, Quality,
+            getFirstEncodableVideoCodec, getFirstEncodableAudioCodec, EncodedPacketSink, EncodedAudioPacketSource, AudioSampleSink, AudioSampleSource } = MBm;
+
+    const input = new Input({ formats: ALL_FORMATS, source: new BlobSource(ed.file) });
+    const vTrack = await input.getPrimaryVideoTrack();
+    if (!vTrack || !(await vTrack.canDecode())) throw new Error(t('loadFail'));
+    const aTrack = await input.getPrimaryAudioTrack();
+
+    const stats = await vTrack.computePacketStats(60).catch(() => null);
+    const fps = (stats && stats.averagePacketRate > 5 && stats.averagePacketRate < 240) ? stats.averagePacketRate : 30;
+    const totalDur = (isFinite(vid.duration) && vid.duration > 0) ? vid.duration : 0;
+
+    const fmt = new Mp4OutputFormat({ fastStart: 'in-memory' });
+    const vCodec = await getFirstEncodableVideoCodec(fmt.getSupportedVideoCodecs(), { width: vTrack.codedWidth, height: vTrack.codedHeight });
+    if (!vCodec) throw new Error(t('errNoEncoder'));
+
+    const output = new Output({ format: fmt, target: new BufferTarget() });
+    // bitrate from first display dims (set when first frame arrives); provision with coded dims then it just works
+    const dispW = vTrack.codedWidth, dispH = vTrack.codedHeight;
+    const bitrate = clamp(Math.round(dispW * dispH * fps * BPP[ed.quality]), 4e5, 18e6);
+    const vSource = new VideoSampleSource({ codec: vCodec, quality: new Quality({ bitrate }) });
+    output.addVideoTrack(vSource);
+
+    // audio: lossless packet copy for AAC, else re-encode, else drop
+    let audioLoop = Promise.resolve();
+    let aConf = null;
+    if (aTrack && aTrack.codec === 'aac'){
+      try { aConf = await aTrack.getDecoderConfig(); } catch (e){ aConf = null; }
+    }
+    if (aTrack && aConf && aConf.codec){
+      try {
+        const pSrc = new EncodedAudioPacketSource('aac');
+        output.addAudioTrack(pSrc);
+        audioLoop = (async () => {
+          const ps = new EncodedPacketSink(aTrack);
+          let first = true;
+          for await (const p of ps.packets()){
+            if (ed.canceling) return 'cancel';
+            await pSrc.add(p, first ? { decoderConfig: aConf } : undefined);
+            first = false;
+          }
+          return 'copy';
+        })();
+      } catch (e){ audioNote = 'audioDropped'; }
+    } else if (aTrack && await aTrack.canDecode().catch(() => false)){
+      try {
+        const aCodec = await getFirstEncodableAudioCodec(fmt.getSupportedAudioCodecs(), { numberOfChannels: aTrack.numberOfChannels, sampleRate: aTrack.sampleRate });
+        if (aCodec){
+          const aSrc = new AudioSampleSource({ codec: aCodec, bitrate: 128000 });
+          output.addAudioTrack(aSrc);
+          audioLoop = (async () => {
+            const asink = new AudioSampleSink(aTrack);
+            for await (const s of asink.samples()){
+              if (ed.canceling){ s.close(); return 'cancel'; }
+              await aSrc.add(s); s.close();
+            }
+            return 'reencode';
+          })();
+        } else audioNote = 'audioDropped';
+      } catch (e){ audioNote = 'audioDropped'; }
+    }
+
+    await output.start();
+
+    const sink = new VideoSampleSink(vTrack);
+    const proc = document.createElement('canvas');
+    const pctx = proc.getContext('2d', { willReadFrequently: true });
+    let mk = null, n = 0, tStart = performance.now(), lastYield = 0, mode = 'std';
+    let videoResult = 'ok';
+    for await (const s of sink.samples()){
+      if (ed.canceling){ videoResult = 'cancel'; break; }
+      if (!mk){
+        proc.width = s.displayWidth; proc.height = s.displayHeight;
+        mk = rasterMask(s.displayWidth, s.displayHeight);
+        mode = ed.method;
+      }
+      s.draw(pctx, 0, 0, s.displayWidth, s.displayHeight);
+      try { engineApply(pctx, mk, s.displayWidth, s.displayHeight, mode); }
+      catch (e){ s.close(); throw e; }
+      const vs = new VideoSample(proc, { timestamp: s.timestamp, duration: s.duration });
+      await vSource.add(vs);
+      vs.close(); s.close();
+      n++;
+      const now = performance.now();
+      if (now - lastYield > 120){
+        lastYield = now;
+        const p = totalDur ? clamp(s.timestamp / totalDur, 0, 1) : 0;
+        const fpsLive = n / ((now - tStart) / 1000);
+        const eta = totalDur ? fmtTime((totalDur - s.timestamp) * ((now - tStart) / 1000) / Math.max(0.2, s.timestamp)) : '';
+        setProg(p, n + ' ' + t('statFrames') + ' · ' + fpsLive.toFixed(1) + ' fps', eta ? 'ETA ' + eta : '');
+        await new Promise(r => setTimeout(r, 0));
+      }
+    }
+    const audioResult = await audioLoop;
+    if (videoResult === 'cancel' || audioResult === 'cancel'){
+      try { output.cancel?.(); } catch(_){}
+      exportUI(false); toastI18n('canceled'); return;
+    }
+    await output.finalize();
+    const blob = new Blob([output.target.buffer], { type: 'video/mp4' });
+    const secs = (performance.now() - t0) / 1000;
+    audioNote = audioResult === 'copy' ? 'audioKept' : (audioResult === 'reencode' ? 'audioRe' : (audioNote || 'audioDropped'));
+    showResult(blob, secs, n, audioNote);
+  } catch (e){
+    console.error(e);
+    toast(e && e.message ? e.message : t('loadFail'));
+  } finally {
+    exportUI(false);
+  }
+};
+
+function showResult(blob, secs, frames, audioNote){
+  const url = URL.createObjectURL(blob);
+  const name = (ed.file && ed.file.name ? ed.file.name.replace(/\.[^.]+$/, '') : 'video') + '-clean.mp4';
+  const dl = $('dlBtn');
+  if (dl.dataset.url) URL.revokeObjectURL(dl.dataset.url);
+  dl.href = url; dl.dataset.url = url; dl.download = name;
+  $('resultStats').innerHTML = '';
+  const stats = document.createElement('span');
+  stats.textContent = [
+    fmtBytes(ed.file ? ed.file.size : 0) + ' → ' + fmtBytes(blob.size),
+    frames + ' ' + t('statFrames'),
+    t('doneIn') + ' ' + secs.toFixed(1) + 's',
+    t(audioNote)
+  ].join(' · ');
+  $('resultStats').appendChild(stats);
+  $('editor').classList.add('hidden');
+  $('resultWrap').classList.remove('hidden');
+  maybeFunnel();
+}
+
+/* ---------------- funnel (matrix cross-promotion) ---------------- */
+const FUNNEL = { key: 'funnel_markgone_v1' };
+function maybeFunnel(){
+  if (sessionStorage.getItem(FUNNEL.key)) return;
+  $('funnel').classList.remove('hidden');
+  $('funnelX').onclick = () => { sessionStorage.setItem(FUNNEL.key, '1'); $('funnel').classList.add('hidden'); };
+}
+
+/* ---------------- debug handle ---------------- */
+window.__VG = { ed, loadFile, applyLang, t, get lang(){ return lang; }, engine: () => window.VG_ENGINE, stage, vid, loadMB };
+
+/* first render when metadata ready */
+vid.addEventListener('loadeddata', () => { fitStage(); render(); });
+window.addEventListener('resize', () => { if (vid.videoWidth){ fitStage(); render(); } });
+</script>
+
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "948f2535a9dd4775a436c677b3c950e4"}'></script>
+</body>
+</html>
