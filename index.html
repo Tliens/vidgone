@@ -21,7 +21,8 @@
 <meta name="twitter:title" content="VidGone — Free Online Video Watermark Remover">
 <meta name="twitter:description" content="Brush over any watermark and export a clean MP4 — processed entirely in your browser. No upload, no signup, free forever.">
 <meta name="twitter:image" content="https://vidgone.kuige.me/og-image.png">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2310b981'/%3E%3Cpath d='M18 20 L32 46 L46 20' fill='none' stroke='%23fff' stroke-width='7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" id="favicon">
+<link rel="icon" type="image/png" href="favicon.png?v=1">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=1">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebApplication","name":"VidGone","url":"https://vidgone.kuige.me/","applicationCategory":"MultimediaApplication","operatingSystem":"Any (browser-based)","description":"Free online video watermark remover. Brush over static watermarks and export a clean MP4 — processed entirely in the browser with WebCodecs, videos never uploaded.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"featureList":["Video watermark removal","Static watermark inpainting","Region blur","Batch-free single file processing","100% local processing"],"inLanguage":["en","zh"]}
 </script>
@@ -35,12 +36,12 @@
 </script>
 <style>
 :root{
-  --bg:#f6f8f7; --card:#ffffff; --tx:#17211c; --mut:#5d6b64; --bd:#e2e8e5;
-  --accent:#0da271; --accent2:#0e8f8f; --glow:rgba(16,185,129,.12); --chip:#eef4f1;
-  --danger:#d64545; --ok:#0da271;
+  --bg:#faf5f3; --card:#ffffff; --tx:#26120f; --mut:#8a6f6a; --bd:#eddcd8;
+  --accent:#d63c41; --accent2:#c07a12; --glow:rgba(229,72,77,.10); --chip:#f8ece9;
+  --danger:#d64545; --ok:#b8781a;
 }
-[data-theme="dark"]{ --bg:#0b100e; --card:#121915; --tx:#e7efe9; --mut:#93a49b; --bd:#1f2a25; --accent:#34d399; --accent2:#2dd4bf; --glow:rgba(52,211,153,.10); --chip:#17201b; --danger:#f87171; --ok:#34d399; }
-@media (prefers-color-scheme: dark){ :root[data-theme="auto"]{ --bg:#0b100e; --card:#121915; --tx:#e7efe9; --mut:#93a49b; --bd:#1f2a25; --accent:#34d399; --accent2:#2dd4bf; --glow:rgba(52,211,153,.10); --chip:#17201b; --danger:#f87171; --ok:#34d399; } }
+[data-theme="dark"]{ --bg:#160d0d; --card:#221314; --tx:#f6ebe8; --mut:#b09a94; --bd:#372120; --accent:#e5484d; --accent2:#f5a623; --glow:rgba(229,72,77,.13); --chip:#2a1817; --danger:#f87171; --ok:#f5a623; }
+@media (prefers-color-scheme: dark){ :root[data-theme="auto"]{ --bg:#160d0d; --card:#221314; --tx:#f6ebe8; --mut:#b09a94; --bd:#372120; --accent:#e5484d; --accent2:#f5a623; --glow:rgba(229,72,77,.13); --chip:#2a1817; --danger:#f87171; --ok:#f5a623; } }
 *{box-sizing:border-box} html{scroll-behavior:smooth}
 body{margin:0;font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--tx)}
 a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
@@ -48,7 +49,7 @@ a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
 .topbar{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--bd)}
 .topbar .wrap{display:flex;align-items:center;gap:18px;height:58px}
 .brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:19px;letter-spacing:-.3px;color:var(--tx)}
-.brand .mark{width:26px;height:26px;border-radius:8px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:14px;font-weight:900;box-shadow:0 2px 10px var(--glow)}
+.brand .mark{width:28px;height:28px;border-radius:9px;object-fit:cover;box-shadow:0 0 0 1.5px var(--card),0 0 0 3px var(--accent),0 2px 10px var(--glow)}
 .topnav{display:flex;gap:16px;margin-left:auto;align-items:center}
 .topnav a{color:var(--mut);font-size:14.5px;font-weight:600}
 .tbtn{border:1px solid var(--bd);background:var(--card);color:var(--tx);border-radius:9px;padding:5px 11px;font-size:13px;font-weight:700;cursor:pointer}
@@ -118,6 +119,19 @@ details summary{cursor:pointer;font-weight:700;font-size:15.5px}
 details p{color:var(--mut);font-size:14.5px;margin:9px 0 2px}
 footer{border-top:1px solid var(--bd);margin-top:30px;padding:26px 0 34px;color:var(--mut);font-size:13.5px;text-align:center}
 #toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:var(--tx);color:var(--bg);padding:9px 18px;border-radius:11px;font-size:14px;font-weight:600;opacity:0;pointer-events:none;transition:.25s;z-index:99}
+/* —— 代号悬浮卡 + 关于弹窗（魁歌万岁） —— */
+.kcard{position:fixed;left:18px;bottom:18px;z-index:80;width:62px;height:62px;padding:0;border-radius:16px;border:1px solid var(--bd);cursor:pointer;background:var(--card);box-shadow:0 6px 22px rgba(0,0,0,.28);transition:transform .18s,box-shadow .18s;overflow:hidden}
+.kcard:hover{transform:translateY(-4px);box-shadow:0 12px 32px var(--glow)}
+.kcard img{width:100%;height:100%;object-fit:cover;display:block}
+.kmodal{position:fixed;inset:0;z-index:95;background:rgba(12,4,4,.62);backdrop-filter:blur(5px);display:flex;align-items:center;justify-content:center;padding:20px}
+.kmodal-box{position:relative;background:var(--card);border:1px solid var(--bd);border-radius:20px;max-width:446px;width:100%;max-height:86vh;overflow:auto;padding:28px 26px 24px;text-align:center;box-shadow:0 24px 70px rgba(0,0,0,.42)}
+.kmodal-box .kimg{width:136px;height:136px;border-radius:28px;object-fit:cover;box-shadow:0 0 0 2.5px var(--accent),0 10px 30px var(--glow);margin-bottom:14px}
+.kmodal-box h3{margin:2px 0 12px;font-size:20px;letter-spacing:-.2px}
+.kmodal-box p{color:var(--mut);font-size:14.5px;line-height:1.7;margin:0 0 10px;text-align:left}
+.kmodal-box .btn{margin-top:8px}
+.kmodal-x{position:absolute;top:10px;right:12px;border:none;background:var(--chip);color:var(--mut);width:30px;height:30px;border-radius:99px;cursor:pointer;font-size:14px}
+.kmodal-x:hover{color:var(--tx)}
+@media print{.kcard,.kmodal{display:none!important}}
 #vid{position:fixed;left:-10010px;top:0;width:320px;height:auto;pointer-events:none}
 #toast.on{opacity:1}
 .hidden{display:none!important}
@@ -125,7 +139,7 @@ footer{border-top:1px solid var(--bd);margin-top:30px;padding:26px 0 34px;color:
 </head>
 <body>
 <header class="topbar"><div class="wrap">
-  <span class="brand"><span class="mark">V</span>VidGone</span>
+  <span class="brand"><img class="mark" src="logo.png?v=1" alt="魁歌万岁">VidGone</span>
   <nav class="topnav">
     <a href="#tool" data-i18n="navTool">Tool</a>
     <a href="#guide" data-i18n="navGuide">Guide</a>
@@ -266,8 +280,21 @@ footer{border-top:1px solid var(--bd);margin-top:30px;padding:26px 0 34px;color:
 
 <footer><div class="wrap">
   <div data-i18n="foot1">VidGone — free forever. Your videos never leave your device.</div>
+  <div style="margin-top:5px" data-i18n="footCode">Codename · KuiGe Wan Sui — "Kui" the foremost of makers, "Ge" a song for everyone. Long live free tools.</div>
   <div style="margin-top:5px">© 2026 KuiGe · <a href="https://kuige.me/">kuige.me</a> · <a href="https://markgone.kuige.me/">MarkGone (image version)</a></div>
 </div></footer>
+
+<button class="kcard" id="kCard" aria-label="About VidGone"><img src="logo.png?v=1" alt="魁歌万岁"></button>
+<div class="kmodal hidden" id="kModal" role="dialog" aria-modal="true" aria-labelledby="kTitle">
+  <div class="kmodal-box">
+    <button class="kmodal-x" id="kModalX" aria-label="close">✕</button>
+    <img class="kimg" src="logo.png?v=1" alt="魁歌万岁">
+    <h3 id="kTitle" data-i18n="kTitle">About VidGone · Codename "KuiGe Wan Sui"</h3>
+    <p data-i18n="kIntro">VidGone is a free online video watermark remover: brush over a static watermark and every frame is repaired right in your browser — no upload, no signup, no limits.</p>
+    <p data-i18n="kMeaning">Kui (魁) means the foremost among makers; Ge (歌) means a song sung with everyone. KuiGe is the maker behind kuige.me — after building one free tool after another for the open web, he crowns himself with this golden crown and says: long live. This one is for every creator who keeps their work free.</p>
+    <a class="btn" href="https://x.com/kuige_me" target="_blank" rel="noopener" data-i18n="kFollow">Follow me on X</a>
+  </div>
+</div>
 
 <div id="toast"></div>
 <video id="vid" playsinline muted crossorigin="anonymous"></video>
@@ -606,6 +633,11 @@ const I18N = {
     fq5: 'Does exporting reduce quality?',
     fq5d: 'The video is re-encoded as H.264 MP4. Choose High quality to keep more detail; audio is copied losslessly when the source uses AAC.',
     foot1: 'VidGone — free forever. Your videos never leave your device.',
+    footCode: 'Codename · KuiGe Wan Sui — "Kui" the foremost of makers, "Ge" a song for everyone. Long live free tools.',
+    kTitle: 'About VidGone · Codename "KuiGe Wan Sui"',
+    kIntro: 'VidGone is a free online video watermark remover: brush over a static watermark and every frame is repaired right in your browser — no upload, no signup, no limits.',
+    kMeaning: 'Kui (魁) means the foremost among makers; Ge (歌) means a song sung with everyone. KuiGe is the maker behind kuige.me — after building one free tool after another for the open web, he crowns himself with this golden crown and says: long live. This one is for every creator who keeps their work free.',
+    kFollow: 'Follow me on X',
     // dynamic
     loadFail: 'Could not read this video. Try MP4 (H.264) in Chrome or Edge.',
     noMask: 'Draw a mask over the watermark first',
@@ -655,6 +687,11 @@ const I18N = {
     fq5: '导出会损失画质吗？',
     fq5d: '视频会重新编码为 H.264 MP4，选"高质量"可保留更多细节；源音频为 AAC 时无损直拷。',
     foot1: 'VidGone——永久免费，视频永不离开你的设备。',
+    footCode: '本站代号：魁歌万岁 — 魁者，百工之魁；歌者，与众人同歌。为免费工具加冕，万岁。',
+    kTitle: '关于 VidGone · 代号「魁歌万岁」',
+    kIntro: 'VidGone 是免费的在线视频去水印工具：涂抹框选水印，全程在你的浏览器里逐帧修复（WebCodecs 硬件加速），导出干净 MP4——不上传、免注册、无限制。',
+    kMeaning: '魁者，百工之魁首；歌者，与众人同歌。魁歌是 kuige.me 背后的作者——把一个又一个免费工具做给全网用，今天自己为自己戴上这顶金冠，道一声：万岁。致每一位坚持免费分享的创作者。',
+    kFollow: '去 X 上关注我',
     loadFail: '无法读取该视频，请换用 Chrome/Edge 并使用 MP4 (H.264)。',
     noMask: '请先在水印上画出蒙版',
     decoding: '正在读取视频…', exporting: '正在导出', canceling: '正在取消…',
@@ -1163,6 +1200,13 @@ function showResult(blob, secs, frames, audioNote){
   $('resultWrap').classList.remove('hidden');
   maybeFunnel();
 }
+
+/* ---------------- codename floating card + about modal ---------------- */
+const kModal = $('kModal');
+$('kCard').onclick = () => kModal.classList.remove('hidden');
+$('kModalX').onclick = () => kModal.classList.add('hidden');
+kModal.addEventListener('click', e => { if (e.target === kModal) kModal.classList.add('hidden'); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') kModal.classList.add('hidden'); });
 
 /* ---------------- funnel (matrix cross-promotion) ---------------- */
 const FUNNEL = { key: 'funnel_markgone_v1' };
