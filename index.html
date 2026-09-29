@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>VidGone — Free Online Video Watermark Remover</title>
-<meta name="description" content="Remove watermarks from videos online for free. Brush over the watermark, get a clean MP4 — 100% in your browser, no upload, no signup, no limits. 免费在线视频去水印，视频不上传。">
+<meta name="description" content="Paid tools charge per export — this one never will. Brush over any watermark and export a clean MP4, processed 100% in your browser. No upload, no signup, free forever. 免费在线视频去水印。">
 <link rel="canonical" href="https://vidgone.kuige.me/">
 <link rel="alternate" hreflang="en" href="https://vidgone.kuige.me/?lang=en">
 <link rel="alternate" hreflang="zh" href="https://vidgone.kuige.me/?lang=zh">
@@ -12,14 +12,14 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="VidGone">
 <meta property="og:title" content="VidGone — Free Online Video Watermark Remover">
-<meta property="og:description" content="Brush over any watermark and export a clean MP4 — processed entirely in your browser. No upload, no signup, free forever.">
+<meta property="og:description" content="Paid tools charge per export — this one never will. Brush over any watermark and export a clean MP4, processed 100% in your browser. Free forever.">
 <meta property="og:url" content="https://vidgone.kuige.me/">
 <meta property="og:image" content="https://vidgone.kuige.me/og-image.png">
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="zh_CN">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="VidGone — Free Online Video Watermark Remover">
-<meta name="twitter:description" content="Brush over any watermark and export a clean MP4 — processed entirely in your browser. No upload, no signup, free forever.">
+<meta name="twitter:description" content="Paid tools charge per export — this one never will. Brush over any watermark and export a clean MP4, processed 100% in your browser. Free forever.">
 <meta name="twitter:image" content="https://vidgone.kuige.me/og-image.png">
 <link rel="icon" type="image/png" href="favicon.png?v=1">
 <link rel="apple-touch-icon" href="apple-touch-icon.png?v=1">
@@ -99,6 +99,8 @@ input[type=range]{width:100%;accent-color:var(--accent)}
 .pv-range{width:min(480px,80%)}
 .pv-tag{position:absolute;top:8px;font-size:12px;font-weight:800;color:#fff;background:rgba(0,0,0,.55);padding:2px 9px;border-radius:99px}
 #resultWrap{padding:26px;text-align:center}
+.rvideo{width:100%;max-width:560px;max-height:46vh;border-radius:12px;background:#000;margin:2px 0 12px;box-shadow:0 10px 34px var(--glow)}
+.rlbl{font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);margin:6px 0 8px}
 #resultWrap h3{margin:4px 0 6px;font-size:21px}
 #resultWrap .stats{color:var(--mut);font-size:14.5px;margin-bottom:16px}
 .funnel{margin:18px auto 0;max-width:430px;border:1px solid var(--bd);border-radius:13px;padding:13px 16px;display:flex;align-items:center;gap:12px;text-align:left;background:var(--chip)}
@@ -152,7 +154,7 @@ footer{border-top:1px solid var(--bd);margin-top:30px;padding:26px 0 34px;color:
 <main class="wrap">
   <section class="hero">
     <h1 data-i18n="h1">Free Video Watermark Remover</h1>
-    <p class="sub" data-i18n="sub">Brush over any watermark in your video and export a clean MP4 — processed entirely in your browser. No upload, no signup, free forever.</p>
+    <p class="sub" data-i18n="sub">Paid tools charge per export — this one never will. Brush over any watermark, let the repair engine rebuild it frame by frame, and export a clean MP4 with hardware acceleration. Your video never leaves your device. Free, forever.</p>
     <div class="badges">
       <span class="badge ok" data-i18n="b1">100% local — video never leaves your device</span>
       <span class="badge" data-i18n="b2">Free · no limits · no signup</span>
@@ -239,6 +241,8 @@ footer{border-top:1px solid var(--bd);margin-top:30px;padding:26px 0 34px;color:
 
     <div id="resultWrap" class="panel hidden">
       <h3 data-i18n="rDone">✅ Done — your clean video is ready</h3>
+      <div class="rlbl" data-i18n="rPrev">Preview the cleaned video</div>
+      <video id="resultVideo" class="rvideo hidden" controls playsinline></video>
       <div class="stats" id="resultStats"></div>
       <a class="btn" id="dlBtn" download data-i18n="rDl">⬇ Download clean MP4</a>
       <button class="btn ghost" id="againBtn" style="margin-left:8px" data-i18n="rAgain">Process another</button>
@@ -600,7 +604,7 @@ const I18N = {
     title: 'VidGone — Free Online Video Watermark Remover',
     navTool: 'Tool', navGuide: 'Guide', navFaq: 'FAQ',
     h1: 'Free Video Watermark Remover',
-    sub: 'Brush over any watermark in your video and export a clean MP4 — processed entirely in your browser. No upload, no signup, free forever.',
+    sub: 'Paid tools charge per export — this one never will. Brush over any watermark, let the repair engine rebuild it frame by frame, and export a clean MP4 with hardware acceleration. Your video never leaves your device. Free, forever.',
     b1: '100% local — video never leaves your device', b2: 'Free · no limits · no signup', b3: 'Checking browser support…',
     b3ok: '✓ Hardware-accelerated in this browser', b3bad: 'Needs Chrome / Edge / Safari 16.4+',
     dz1: 'Drop a video here, or click to choose', dz2: 'MP4 / MOV / WebM · your file is processed locally, nothing is uploaded', dz3: '▶ Try the sample video',
@@ -612,7 +616,8 @@ const I18N = {
     lQuality: 'Export quality', qHigh: 'High — keeps most detail', qMed: 'Balanced — recommended', qLow: 'Small file',
     bPreview: '🔍 Preview this frame', bExport: 'Export clean MP4', bCancel: 'Cancel', bNew: '↺ Choose another video',
     pvTag: 'Cleaned', pvClose: 'Back to editing',
-    rDone: '✅ Done — your clean video is ready', rDl: '⬇ Download clean MP4', rAgain: 'Process another',
+    rDone: '✅ Done — your clean video is ready',
+    rPrev: 'Preview the cleaned video', rDl: '⬇ Download clean MP4', rAgain: 'Process another',
     fTitle: 'Images with watermarks too?', fWhy: 'MarkGone removes watermarks from photos — same brush, same privacy.', fBtn: 'Open MarkGone',
     gH2: 'How it works', g1: 'Load a video', g1d: 'Drop in an MP4/MOV/WebM, or try the sample. The file stays on your device — processing runs in this browser tab.',
     g2: 'Mark the watermark', g2d: 'Brush over it or draw a box. Slightly cover beyond the logo edges for the cleanest rebuild. Scrub the timeline to check every scene.',
@@ -654,7 +659,7 @@ const I18N = {
     title: 'VidGone — 免费在线视频去水印',
     navTool: '工具', navGuide: '指南', navFaq: '常见问题',
     h1: '免费在线视频去水印',
-    sub: '涂抹框选视频里的水印，一键导出干净 MP4——全程在浏览器本地完成。不上传、免注册、永久免费。',
+    sub: '收费工具按次算钱，这里一分不收——涂抹框选水印，修复引擎逐帧重建画面，硬件加速导出干净 MP4。视频全程留在你的设备：不上传、免注册、不限次数、永久免费。',
     b1: '100% 本地处理，视频永不上传', b2: '免费 · 无限制 · 免注册', b3: '正在检测浏览器…',
     b3ok: '✓ 当前浏览器已硬件加速', b3bad: '需要 Chrome / Edge / Safari 16.4+',
     dz1: '拖入视频，或点击选择文件', dz2: '支持 MP4 / MOV / WebM · 文件仅在本机处理，绝不上传', dz3: '▶ 试试示例视频',
@@ -666,7 +671,8 @@ const I18N = {
     lQuality: '导出画质', qHigh: '高质量——保留最多细节', qMed: '均衡——推荐', qLow: '小体积',
     bPreview: '🔍 预览当前帧', bExport: '导出干净 MP4', bCancel: '取消', bNew: '↺ 换一个视频',
     pvTag: '已去水印', pvClose: '返回编辑',
-    rDone: '✅ 完成——干净的视频已就绪', rDl: '⬇ 下载干净 MP4', rAgain: '再处理一个',
+    rDone: '✅ 完成——干净的视频已就绪',
+    rPrev: '预览去水印后的效果', rDl: '⬇ 下载干净 MP4', rAgain: '再处理一个',
     fTitle: '图片也有水印？', fWhy: 'MarkGone 图片去水印——同样的涂抹操作，同样的隐私承诺。', fBtn: '打开 MarkGone',
     gH2: '使用方法', g1: '载入视频', g1d: '拖入 MP4/MOV/WebM 或试试示例。文件留在本机，处理都在当前浏览器标签页完成。',
     g2: '标记水印', g2d: '用画笔涂抹或画方框，稍微盖过 logo 边缘效果最好。拖动时间轴检查每个镜头。',
@@ -715,8 +721,8 @@ function applyLang(l, persist){
   document.title = t('title');
   const md = document.querySelector('meta[name="description"]');
   if (md) md.setAttribute('content', l === 'zh'
-    ? '免费在线视频去水印：涂抹框选水印区域，浏览器本地逐帧修复导出 MP4。视频不上传、无需注册、无次数限制。'
-    : 'Remove watermarks from videos online for free. Brush over the watermark, get a clean MP4 — 100% in your browser, no upload, no signup, no limits.');
+    ? '收费工具按次算钱，这里一分不收：涂抹框选水印，浏览器本地逐帧修复导出干净 MP4。不上传、免注册、不限次数，永久免费。'
+    : 'Paid tools charge per export — this one never will. Brush over any watermark and export a clean MP4, processed 100% in your browser. No upload, no signup, free forever.');
   document.querySelectorAll('[data-i18n]').forEach(el => { const v = t(el.getAttribute('data-i18n')); if (v) el.textContent = v; });
   document.querySelectorAll('[data-i18n-ph]').forEach(el => { el.setAttribute('placeholder', t(el.getAttribute('data-i18n-ph'))); });
   $('langBtn').textContent = l === 'zh' ? 'EN' : '中文';
@@ -1187,6 +1193,10 @@ function showResult(blob, secs, frames, audioNote){
   const dl = $('dlBtn');
   if (dl.dataset.url) URL.revokeObjectURL(dl.dataset.url);
   dl.href = url; dl.dataset.url = url; dl.download = name;
+  const rv = $('resultVideo');
+  rv.pause();
+  rv.src = url; rv.load();
+  rv.classList.remove('hidden');
   $('resultStats').innerHTML = '';
   const stats = document.createElement('span');
   stats.textContent = [
