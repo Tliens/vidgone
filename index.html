@@ -981,9 +981,13 @@ document.querySelectorAll('.mcard').forEach(c => {
 function updExportBtn(){ $('exportBtn').disabled = ed.masks.length === 0 || ed.exporting; }
 
 /* playback */
+let playTicker = null;
+function startTicker(){ if (!playTicker) playTicker = setInterval(() => { if (!vid.paused && !vid.ended) render(); else stopTicker(); }, 33); }
+function stopTicker(){ if (playTicker){ clearInterval(playTicker); playTicker = null; } }
 $('playBtn').onclick = () => { if (vid.paused) vid.play(); else vid.pause(); };
-vid.onplay = () => $('playBtn').textContent = t('pause');
-vid.onpause = () => { $('playBtn').textContent = t('play'); render(); };
+vid.onplay = () => { $('playBtn').textContent = t('pause'); startTicker(); };
+vid.onpause = () => { $('playBtn').textContent = t('play'); stopTicker(); render(); };
+vid.onended = () => { stopTicker(); render(); };
 let seeking = false;
 $('seek').oninput = e => { seeking = true; if (vid.duration) vid.currentTime = (e.target.value / 1000) * vid.duration; };
 vid.ontimeupdate = () => {
